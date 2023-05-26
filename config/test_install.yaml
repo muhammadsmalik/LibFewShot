@@ -9,7 +9,7 @@ includes:
 
 
 device_ids: 0
-way_num: 5
+way_num: 2
 shot_num: 1
 query_num: 15
 episode_size: 1
