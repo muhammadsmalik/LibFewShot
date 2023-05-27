@@ -10,6 +10,9 @@ import torch
 import yaml
 from torch import nn
 import torch.distributed as dist
+import torch_xla
+import torch_xla.core.xla_model as xm
+
 
 from queue import Queue
 import core.model as arch
@@ -465,17 +468,22 @@ class Trainer(object):
                     ),
                     level="warning",
                 )
-            model = model.to(self.rank)
-            model = nn.parallel.DistributedDataParallel(
-                model,
-                device_ids=[self.rank],
-                output_device=self.rank,
-                find_unused_parameters=True,
-            )
+            # model = model.to(self.rank)
+            # model = nn.parallel.DistributedDataParallel(
+            #     model,
+            #     device_ids=[self.rank],
+            #     output_device=self.rank,
+            #     find_unused_parameters=True,
+            # )
+
+            model = nn.DataParallel(model)
+            model.to(self.device)
+
 
             return model, model.module.model_type
         else:
-            model = model.to(self.rank)
+            # model = model
+            model = model.to(self.device)
 
             return model, model.model_type
 
@@ -576,18 +584,20 @@ class Trainer(object):
             tuple: A tuple of deviceand list_ids.
         """
         init_seed(config["seed"], config["deterministic"])
-        device, list_ids = prepare_device(
-            rank,
-            config["device_ids"],
-            config["n_gpu"],
-            backend="nccl"
-            if "dist_backend" not in self.config
-            else self.config["dist_backend"],
-            dist_url="tcp://127.0.0.1:" + str(config["port"])
-            if "dist_url" not in self.config
-            else self.config["dist_url"],
-        )
-        torch.cuda.set_device(self.rank)
+        # device, list_ids = prepare_device(
+        #     rank,
+        #     config["device_ids"],
+        #     config["n_gpu"],
+        #     backend="nccl"
+        #     if "dist_backend" not in self.config
+        #     else self.config["dist_backend"],
+        #     dist_url="tcp://127.0.0.1:" + str(config["port"])
+        #     if "dist_url" not in self.config
+        #     else self.config["dist_url"],
+        # )
+        # torch.cuda.set_device(self.rank)
+        device = xm.xla_device()
+        list_ids = [self.rank]
 
         return device, list_ids
 
