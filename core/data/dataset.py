@@ -6,6 +6,9 @@ import pickle
 from PIL import Image
 from torch.utils.data import Dataset
 
+import gcsfs
+fs = gcsfs.GCSFileSystem(project='seeds-387406')
+
 
 def pil_loader(path):
     # open path as file to avoid ResourceWarning
@@ -107,7 +110,7 @@ class GeneralDataset(Dataset):
         data_list = []
         label_list = []
         class_label_dict = dict()
-        with open(meta_csv) as f_csv:
+        with fs.open(meta_csv, 'r') as f_csv:
             f_train = csv.reader(f_csv, delimiter=",")
             for row in f_train:
                 if f_train.line_num == 1:
