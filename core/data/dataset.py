@@ -105,6 +105,8 @@ class GeneralDataset(Dataset):
         Returns:
             tuple: A tuple of (data list, label list, class-label dict)
         """
+        fs = gcsfs.GCSFileSystem(project='seeds-387406')
+
         meta_csv = os.path.join(self.data_root, "{}.csv".format(self.mode))
 
         data_list = []
