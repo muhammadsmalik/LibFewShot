@@ -158,8 +158,8 @@ class Trainer(object):
         log_scale = 1 if self.model_type == ModelType.FINETUNING else episode_size
         for batch_idx, batch in enumerate(zip(*self.train_loader)):
             # Debug: print batch size, type and sample data
-            print(f"Batch {batch_idx} size: {len(batch)}")
-            print(f"Batch {batch_idx} data type: {type(batch)}")
+            # print(f"Batch {batch_idx} size: {len(batch)}")
+            # print(f"Batch {batch_idx} data type: {type(batch)}")
 
             if self.rank == 0:
                 self.writer.set_step(
