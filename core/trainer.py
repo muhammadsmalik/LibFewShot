@@ -142,7 +142,6 @@ class Trainer(object):
             float: Acc.
         """
         self.model.train()
-        print("ENTERED TRAINING LOOP")
 
         meter = self.train_meter
         meter.reset()
@@ -151,6 +150,8 @@ class Trainer(object):
             if self.model_type == ModelType.FINETUNING
             else self.config["episode_size"]
         )
+
+        print(self.train_loader)
 
         end = time()
         log_scale = 1 if self.model_type == ModelType.FINETUNING else episode_size
