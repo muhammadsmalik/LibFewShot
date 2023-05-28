@@ -142,6 +142,7 @@ class Trainer(object):
             float: Acc.
         """
         self.model.train()
+        print("ENTERED TRAINING LOOP")
 
         meter = self.train_meter
         meter.reset()
