@@ -6,14 +6,11 @@ import pickle
 from PIL import Image
 from torch.utils.data import Dataset
 
-import gcsfs
-
 
 def pil_loader(path):
-    fs = gcsfs.GCSFileSystem(project='seeds-387406')
     # open path as file to avoid ResourceWarning
     # (https://github.com/python-pillow/Pillow/issues/835)
-    with fs.open(path, "rb") as f:
+    with open(path, "rb") as f:
         with Image.open(f) as img:
             return img.convert("RGB")
 
@@ -105,14 +102,12 @@ class GeneralDataset(Dataset):
         Returns:
             tuple: A tuple of (data list, label list, class-label dict)
         """
-        fs = gcsfs.GCSFileSystem(project='seeds-387406')
-
         meta_csv = os.path.join(self.data_root, "{}.csv".format(self.mode))
 
         data_list = []
         label_list = []
         class_label_dict = dict()
-        with fs.open(meta_csv, 'r') as f_csv:
+        with open(meta_csv) as f_csv:
             f_train = csv.reader(f_csv, delimiter=",")
             for row in f_train:
                 if f_train.line_num == 1:

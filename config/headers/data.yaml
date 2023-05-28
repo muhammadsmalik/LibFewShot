@@ -1,6 +1,6 @@
 # data_root: data/CIFAR100
 # data_root: data/consolidated_seeds_dataset
-data_root: gs://seed_dataset/consolidated_seeds_dataset
+data_root: data/consolidated_seeds_dataset
 # image_size: 256
 # data_root: data/miniImageNet--ravi
 image_size: 84
