@@ -13,6 +13,8 @@ import torch.distributed as dist
 import torch_xla
 import torch_xla.core.xla_model as xm
 
+import torch_xla.distributed.xla_multiprocessing as xmp
+
 
 from queue import Queue
 import core.model as arch
@@ -180,7 +182,10 @@ class Trainer(object):
             # for param in self.model.parameters():
             #     if (param.grad != param.grad).float().sum() != 0:  # nan detected
             #         param.grad.zero_()
-            self.optimizer.step()
+            
+            
+            # self.optimizer.step()
+            xm.optimizer_step(self.optimizer, barrier=True)
             meter.update("calc_time", time() - calc_begin)
 
             # measure accuracy and record loss
