@@ -4,6 +4,11 @@ from torch.utils.data import DataLoader
 from torch.utils.data.distributed import DistributedSampler
 from torchvision import transforms
 
+import torch_xla
+import torch_xla.core.xla_model as xm
+import torch_xla.distributed.parallel_loader as pl
+
+
 from core.data.dataset import GeneralDataset
 from .collates import get_collate_function, get_augment_method,get_mean_std
 from .samplers import DistributedCategoriesSampler, get_sampler
@@ -87,6 +92,10 @@ def get_dataloader(config, mode, model_type, distribute):
             collate_fn=collate_function,
         )
 
+        # Wrap dataloader for TPU
+        dataloader = pl.ParallelLoader(dataloader, [xm.xla_device()])
+        dataloader = dataloader.per_device_loader(xm.xla_device())
+
         return (dataloader,)
     else:
         # for RENet: use fs_loader and generic_loader in training stage
@@ -105,6 +114,10 @@ def get_dataloader(config, mode, model_type, distribute):
             pin_memory=True,
             collate_fn=collate_function,
         )
+        # Wrap dataloader for TPU
+        dataloader = pl.ParallelLoader(dataloader, [xm.xla_device()])
+        dataloader = dataloader.per_device_loader(xm.xla_device())
+
         collate_function = get_collate_function(
             config, trfms, mode, ModelType.FINETUNING
         )
@@ -124,6 +137,11 @@ def get_dataloader(config, mode, model_type, distribute):
             pin_memory=True,
             collate_fn=collate_function,
         )
+
+        # Wrap dataloader_aux for TPU
+        dataloader_aux = pl.ParallelLoader(dataloader_aux, [xm.xla_device()])
+        dataloader_aux = dataloader_aux.per_device_loader(xm.xla_device())
+
 
         return (dataloader, dataloader_aux)
 
