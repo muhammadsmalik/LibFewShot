@@ -7,10 +7,10 @@ from PIL import Image
 from torch.utils.data import Dataset
 
 import gcsfs
-fs = gcsfs.GCSFileSystem(project='seeds-387406')
 
 
 def pil_loader(path):
+    fs = gcsfs.GCSFileSystem(project='seeds-387406')
     # open path as file to avoid ResourceWarning
     # (https://github.com/python-pillow/Pillow/issues/835)
     with fs.open(path, "rb") as f:
