@@ -151,8 +151,8 @@ class Trainer(object):
             else self.config["episode_size"]
         )
 
-        for x in self.train_loader:
-            print(x)
+        # for x in self.train_loader:
+        #     print(x)
 
         end = time()
         log_scale = 1 if self.model_type == ModelType.FINETUNING else episode_size
