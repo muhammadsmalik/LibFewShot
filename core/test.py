@@ -33,7 +33,7 @@ class Test(object):
     """
 
     def __init__(self, rank, config, result_path=None):
-        print("Init test")
+        print("Init test", flush=True)
         self.rank = rank
         self.config = config
         self.config["rank"] = rank
@@ -47,7 +47,7 @@ class Test(object):
         # print(config)
         self.model, self.model_type = self._init_model(config)
         self.test_loader = self._init_dataloader(config)
-        print("Finish init test")
+        print("Finish init test", flush=True)
 
     def test_loop(self):
         """
@@ -57,21 +57,21 @@ class Test(object):
         total_h = np.zeros(self.config["test_epoch"])
         total_accuracy_vector = []
 
-        print("Inside test loop: Start")
-        print(self.config["test_epoch"])
+        print("Inside test loop: Start", flush=True)
+        print(self.config["test_epoch"], flush=True)
 
         for epoch_idx in range(self.config["test_epoch"]):
-            print("============ Testing on the test set ============")
+            print("============ Testing on the test set ============", flush=True)
             _, accuracies = self._validate(epoch_idx)
             test_accuracy, h = mean_confidence_interval(accuracies)
-            print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h))
+            print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h), flush=True)
             total_accuracy += test_accuracy
             total_accuracy_vector.extend(accuracies)
             total_h[epoch_idx] = h
 
         aver_accuracy, h = mean_confidence_interval(total_accuracy_vector)
-        print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h))
-        print("............Testing is end............")
+        print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h), flush=True)
+        print("............Testing is end............", flush=True)
 
         if self.writer is not None:
             self.writer.close()
@@ -154,7 +154,7 @@ class Test(object):
                             meter.avg("acc"),
                         )
                     )
-                    print(info_str)
+                    print(info_str, flush=True)
                 end = time()
 
 
@@ -294,8 +294,8 @@ class Test(object):
         model = get_instance(arch, "classifier", config, **model_kwargs)
 
         # print(model)
-        print("Trainable params in the model: {}.".format(count_parameters(model)))
-        print("Loading the state dict from {}.".format(self.state_dict_path))
+        print("Trainable params in the model: {}.".format(count_parameters(model)), flush=True)
+        print("Loading the state dict from {}.".format(self.state_dict_path), flush=True)
         state_dict = torch.load(self.state_dict_path, map_location="cpu")
         model.load_state_dict(state_dict)
 
