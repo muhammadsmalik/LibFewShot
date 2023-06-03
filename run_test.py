@@ -28,6 +28,7 @@ if __name__ == "__main__":
     #     os.environ["CUDA_VISIBLE_DEVICES"] = config["device_ids"]
     #     torch.multiprocessing.spawn(main, nprocs=config["n_gpu"], args=(config,))
     # else:
+    print("Before test loop: Init test")
     test = Test(0, config, PATH)
     print("Before test loop: Start")
     test.test_loop()
