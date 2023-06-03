@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/ATL_NET
-- backbones/Conv32F
+- classifiers/ATL_NET.yaml
+- backbones/Conv32F.yaml
 query_num: 15
 result_root: ./ATL_NET_1_Conv32F_1
 shot_num: 1

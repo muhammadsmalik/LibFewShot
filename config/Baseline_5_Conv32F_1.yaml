@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/Baseline
-- backbones/Conv32F
+- classifiers/Baseline.yaml
+- backbones/Conv32F.yaml
 query_num: 15
 result_root: ./Baseline_5_Conv32F_1
 shot_num: 1

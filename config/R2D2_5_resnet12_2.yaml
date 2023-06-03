@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/R2D2
-- backbones/resnet12
+- classifiers/R2D2.yaml
+- backbones/resnet12.yaml
 query_num: 15
 result_root: ./R2D2_5_resnet12_2
 shot_num: 1

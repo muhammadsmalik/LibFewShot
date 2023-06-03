@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/DeepBdc
-- backbones/resnet18
+- classifiers/DeepBdc.yaml
+- backbones/resnet18.yaml
 query_num: 15
 result_root: ./DeepBdc_1_resnet18_2
 shot_num: 1

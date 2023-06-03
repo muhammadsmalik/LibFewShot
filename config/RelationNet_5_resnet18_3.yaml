@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/RelationNet
-- backbones/resnet18
+- classifiers/RelationNet.yaml
+- backbones/resnet18.yaml
 query_num: 15
 result_root: ./RelationNet_5_resnet18_3
 shot_num: 1

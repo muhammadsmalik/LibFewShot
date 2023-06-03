@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/Proto
-- backbones/Conv32F
+- classifiers/Proto.yaml
+- backbones/Conv32F.yaml
 query_num: 15
 result_root: ./Proto_5_Conv32F_2
 shot_num: 1

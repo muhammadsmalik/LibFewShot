@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/CAN
-- backbones/Conv32F
+- classifiers/CAN.yaml
+- backbones/Conv32F.yaml
 query_num: 15
 result_root: ./CAN_5_Conv32F_3
 shot_num: 1

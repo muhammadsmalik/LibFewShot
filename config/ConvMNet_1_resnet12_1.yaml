@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/ConvMNet
-- backbones/resnet12
+- classifiers/ConvMNet.yaml
+- backbones/resnet12.yaml
 query_num: 15
 result_root: ./ConvMNet_1_resnet12_1
 shot_num: 1

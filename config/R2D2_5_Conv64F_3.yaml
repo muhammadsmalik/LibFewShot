@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/R2D2
-- backbones/Conv64F
+- classifiers/R2D2.yaml
+- backbones/Conv64F.yaml
 query_num: 15
 result_root: ./R2D2_5_Conv64F_3
 shot_num: 1

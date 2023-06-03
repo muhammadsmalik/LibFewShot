@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/VERSA
-- backbones/Conv64F
+- classifiers/VERSA.yaml
+- backbones/Conv64F.yaml
 query_num: 15
 result_root: ./VERSA_5_Conv64F_1
 shot_num: 1

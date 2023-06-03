@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/RelationNet
-- backbones/Conv64F
+- classifiers/RelationNet.yaml
+- backbones/Conv64F.yaml
 query_num: 15
 result_root: ./RelationNet_1_Conv64F_2
 shot_num: 1

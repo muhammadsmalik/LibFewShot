@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/Baseline++
-- backbones/resnet18
+- classifiers/Baseline++.yaml
+- backbones/resnet18.yaml
 query_num: 15
 result_root: ./Baseline++_1_resnet18_3
 shot_num: 1

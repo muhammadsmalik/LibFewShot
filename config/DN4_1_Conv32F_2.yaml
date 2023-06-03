@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/DN4
-- backbones/Conv32F
+- classifiers/DN4.yaml
+- backbones/Conv32F.yaml
 query_num: 15
 result_root: ./DN4_1_Conv32F_2
 shot_num: 1

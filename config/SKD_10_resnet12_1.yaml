@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/SKD
-- backbones/resnet12
+- classifiers/SKD.yaml
+- backbones/resnet12.yaml
 query_num: 15
 result_root: ./SKD_10_resnet12_1
 shot_num: 1

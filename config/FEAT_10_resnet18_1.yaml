@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/FEAT
-- backbones/resnet18
+- classifiers/FEAT.yaml
+- backbones/resnet18.yaml
 query_num: 15
 result_root: ./FEAT_10_resnet18_1
 shot_num: 1

@@ -14,8 +14,8 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/ADM
-- backbones/resnet12
+- classifiers/ADM.yaml
+- backbones/resnet12.yaml
 query_num: 15
 result_root: ./ADM_1_resnet12_3
 shot_num: 1
