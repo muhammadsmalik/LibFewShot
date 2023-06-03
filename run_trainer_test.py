@@ -6,6 +6,9 @@ sys.dont_write_bytecode = True
 from core.config import Config
 from core import Trainer
 
+import os
+import torch
+
 if __name__ == "__main__":
     modelCollection = ["Baseline", 
                    "Baseline++", 
