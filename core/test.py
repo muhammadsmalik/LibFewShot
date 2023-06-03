@@ -75,9 +75,8 @@ class Test(object):
             print("============ Testing on the test set ============", flush=True)
             _, accuracies = self._validate(epoch_idx)
             test_accuracy, h = mean_confidence_interval(accuracies)
-            if test_accuracy > best_acc{
+            if test_accuracy > best_acc:
                 best_acc = test_accuracy
-            }
             print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h), flush=True)
             total_accuracy += test_accuracy
             total_accuracy_vector.extend(accuracies)
