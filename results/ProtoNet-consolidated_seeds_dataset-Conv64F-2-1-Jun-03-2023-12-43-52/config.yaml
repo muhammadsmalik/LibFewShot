@@ -23,7 +23,7 @@ image_size: 84
 includes:
 - headers/data.yaml
 - headers/device.yaml
-- headers/misc.yaml
+- headers/misc2.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
 - classifiers/Proto.yaml
