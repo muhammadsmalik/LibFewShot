@@ -325,13 +325,16 @@ class Test(object):
                 #     ),
                 #     level="warning",
                 # )
-            model = model.to(self.rank)
-            model = nn.parallel.DistributedDataParallel(
-                model,
-                device_ids=[self.rank],
-                output_device=self.rank,
-                find_unused_parameters=True,
-            )
+            # model = model.to(self.rank)
+            # model = nn.parallel.DistributedDataParallel(
+            #     model,
+            #     device_ids=[self.rank],
+            #     output_device=self.rank,
+            #     find_unused_parameters=True,
+            # )
+
+            model = nn.DataParallel(model)
+            model.to(self.device)
 
             return model, model.module.model_type
         else:
