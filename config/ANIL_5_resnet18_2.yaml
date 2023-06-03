@@ -17,7 +17,7 @@ includes:
 - classifiers/ANIL.yaml
 - backbones/resnet18.yaml
 query_num: 15
-result_root: ./ANIL_5_resnet18_2
+result_root: ./results
 shot_num: 1
 test_episode: 100
 train_episode: 100

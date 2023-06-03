@@ -17,7 +17,7 @@ includes:
 - classifiers/RENet.yaml
 - backbones/resnet12.yaml
 query_num: 15
-result_root: ./RENet_10_resnet12_1
+result_root: ./results
 shot_num: 1
 test_episode: 100
 train_episode: 100

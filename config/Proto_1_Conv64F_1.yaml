@@ -17,7 +17,7 @@ includes:
 - classifiers/Proto.yaml
 - backbones/Conv64F.yaml
 query_num: 15
-result_root: ./Proto_1_Conv64F_1
+result_root: ./results
 shot_num: 1
 test_episode: 100
 train_episode: 100
