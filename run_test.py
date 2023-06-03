@@ -9,7 +9,7 @@ from core.config import Config
 from core import Test
 
 
-PATH = "./results"
+PATH = "./config"
 VAR_DICT = {
     "test_epoch": 5,
     "device_ids": "4,5",
