@@ -9,7 +9,7 @@ from core import Trainer
 if __name__ == "__main__":
     config = Config("config/test_run.yaml").get_config_dict()
     rank = 0  # Set the rank to 0 for single GPU or CPU
-    trainer = Trainer(rank, config)  # Pass both rank and config arguments
+    trainer = Trainer(rank, config, "test_dir_haha")  # Pass both rank and config arguments
     trainer.train_loop(rank)
 
 # # -*- coding: utf-8 -*-

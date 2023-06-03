@@ -44,7 +44,7 @@ class Trainer(object):
     Build a trainer from config dict, set up optimizer, model, etc. Train/test/val and log.
     """
 
-    def __init__(self, rank, config):
+    def __init__(self, rank, config, result_dir):
         self.rank = rank
         self.config = config
         self.config["rank"] = rank
@@ -54,7 +54,7 @@ class Trainer(object):
             self.log_path,
             self.checkpoints_path,
             self.viz_path,
-        ) = self._init_files(config)
+        ) = self._init_files(config, result_dir)
         self.logger = self._init_logger()
         self.device, self.list_ids = self._init_device(rank, config)
         self.writer = self._init_writer(self.viz_path)
@@ -316,7 +316,7 @@ class Trainer(object):
             self.model.reverse_setting_info()
         return meter.avg("acc1")
 
-    def _init_files(self, config):
+    def _init_files(self, config, result_dir):
         """
         Init result_path(checkpoints_path, log_path, viz_path) from the config dict.
 
@@ -339,15 +339,6 @@ class Trainer(object):
                 config["backbone"]["name"],
                 config["way_num"],
                 config["shot_num"],
-            )
-            result_dir = (
-                base_dir
-                + "{}-{}".format(
-                    ("-" + config["tag"]) if config["tag"] is not None else "",
-                    get_local_time(),
-                )
-                if config["log_name"] is None
-                else config["log_name"]
             )
             result_path = os.path.join(config["result_root"], result_dir)
             # print("Result DIR: " + result_path)
