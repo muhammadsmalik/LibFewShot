@@ -32,6 +32,11 @@ if __name__ == "__main__":
     backbonesCollection = ["Conv64F", "resnet12", "resnet18", "Conv32F"]
     trialRunCollection = [1,2,3]
 
+    # reset final results
+    f = open("final_result.txt", "w")
+    f.write("")
+    f.close()
+    
     f = open("final_result.txt", "a")
 
     f.write("Model" + "," + "Number of Shots" + "," + "Backbone" + ","+"Trial Number"+","+"Train Accuracy" + "," + "Best Train Accuracy" + "," + "Test 1 Accuracy" + ","+"Test 1 Best Accuracy" + ","+"Validation Accuracy"+"," + "Best Validation Accuracy" +","+"Test 2 Final Accuracy" + "," + "Test 2 Best Accuracy")
@@ -66,6 +71,8 @@ if __name__ == "__main__":
                     test = Test(0, config, PATH, f)
                     
                     test.test_loop()
+
+                    f.write("\n")
                     
                     break
                 break
