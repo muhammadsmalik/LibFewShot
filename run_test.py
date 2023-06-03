@@ -9,7 +9,7 @@ from core.config import Config
 from core import Test
 
 
-PATH = "./results/DN4-miniImageNet--ravi-Conv64F-5-1-Dec-01-2021-06-05-20"
+PATH = "./results/ProtoNet-consolidated_seeds_dataset-Conv64F-2-1-Jun-03-2023-12-43-52"
 VAR_DICT = {
     "test_epoch": 5,
     "device_ids": "4,5",
@@ -25,7 +25,7 @@ def main(rank, config):
 
 
 if __name__ == "__main__":
-    config = Config(os.path.join(PATH, "config.yaml"), VAR_DICT).get_config_dict()
+    config = Config(os.path.join(PATH, "test_run.yaml"), VAR_DICT).get_config_dict()
 
     if config["n_gpu"] > 1:
         os.environ["CUDA_VISIBLE_DEVICES"] = config["device_ids"]
