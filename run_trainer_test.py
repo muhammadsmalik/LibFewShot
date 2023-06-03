@@ -44,11 +44,16 @@ if __name__ == "__main__":
 
     f.write("Model" + "," + "Number of Shots" + "," + "Backbone" + ","+"Trial Number"+","+"Train Accuracy" + "," + "Best Train Accuracy" + "," + "Test 1 Accuracy" + ","+"Test 1 Best Accuracy" + ","+"Validation Accuracy"+"," + "Best Validation Accuracy" +","+"Test 2 Final Accuracy" + "," + "Test 2 Best Accuracy")
 
+    mode = 0o666
+
     for numShots in numberOfShotsCollection:
         for model in modelCollection:
             for backbone in backbonesCollection:
                 for trial in trialRunCollection:
                     name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
+
+                    os.mkdir(name, mode)
+                    
                     fileName = name + ".yaml"
                     
                     f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
