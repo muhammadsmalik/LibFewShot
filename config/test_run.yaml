@@ -15,7 +15,7 @@ query_num: 1
 episode_size: 1
 train_episode: 1
 test_episode: 1
-epoch: 1
+epoch: 10
 test_epoch: 1
 
 backbone:
