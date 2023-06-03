@@ -15,7 +15,7 @@ VAR_DICT = {
     "device_ids": "4,5",
     "n_gpu": 2,
     "test_episode": 600,
-    "episode_size": 2,
+    "episode_size": 1,
 }
     
 
