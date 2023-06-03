@@ -12,8 +12,7 @@ from core import Test
 PATH = "./results/ProtoNet-consolidated_seeds_dataset-Conv64F-2-1-Jun-03-2023-15-20-14"
 VAR_DICT = {
     "test_epoch": 5,
-    "device_ids": "4,5",
-    "n_gpu": 2,
+    "n_gpu": 0,
     "test_episode": 600,
     "episode_size": 1,
 }
