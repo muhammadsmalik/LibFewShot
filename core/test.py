@@ -3,7 +3,7 @@ import os
 import builtins
 from logging import getLogger
 from time import time
-
+import torch_xla.core.xla_model as xm
 import numpy as np
 import torch
 from torch import nn
