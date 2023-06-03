@@ -43,7 +43,7 @@ class Test(object):
         self.device, self.list_ids = self._init_device(rank, config)
         self.writer = self._init_writer(self.viz_path)
         self.test_meter = self._init_meter()
-        print(config)
+        # print(config)
         self.model, self.model_type = self._init_model(config)
         self.test_loader = self._init_dataloader(config)
 
@@ -288,7 +288,7 @@ class Test(object):
         }
         model = get_instance(arch, "classifier", config, **model_kwargs)
 
-        print(model)
+        # print(model)
         print("Trainable params in the model: {}.".format(count_parameters(model)))
         print("Loading the state dict from {}.".format(self.state_dict_path))
         state_dict = torch.load(self.state_dict_path, map_location="cpu")
@@ -303,12 +303,12 @@ class Test(object):
             ):
                 model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
             else:
-                print(
-                    "{} with multi GPU will conflict with syncBN".format(
-                        self.config["classifier"]["name"]
-                    ),
-                    level="warning",
-                )
+                # print(
+                #     "{} with multi GPU will conflict with syncBN".format(
+                #         self.config["classifier"]["name"]
+                #     ),
+                #     level="warning",
+                # )
             model = model.to(self.rank)
             model = nn.parallel.DistributedDataParallel(
                 model,
