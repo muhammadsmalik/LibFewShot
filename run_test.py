@@ -21,6 +21,7 @@ VAR_DICT = {
 
 
 if __name__ == "__main__":
+    print("Entered main")
     config = Config(os.path.join(PATH, "config.yaml"), VAR_DICT).get_config_dict()
 
     # if config["n_gpu"] > 1:
