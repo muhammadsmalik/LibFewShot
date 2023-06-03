@@ -55,6 +55,9 @@ class Test(object):
         total_h = np.zeros(self.config["test_epoch"])
         total_accuracy_vector = []
 
+        print("Inside test loop: Start")
+        print(self.config["test_epoch"])
+
         for epoch_idx in range(self.config["test_epoch"]):
             print("============ Testing on the test set ============")
             _, accuracies = self._validate(epoch_idx)

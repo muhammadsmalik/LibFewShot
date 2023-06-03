@@ -21,6 +21,7 @@ VAR_DICT = {
 
 def main(rank, config):
     test = Test(rank, config, PATH)
+    print("Before test loop: Start")
     test.test_loop()
 
 
