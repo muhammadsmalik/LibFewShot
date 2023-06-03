@@ -53,13 +53,13 @@ if __name__ == "__main__":
                     
                     f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
 
-                    config = Config("config/test_run.yaml").get_config_dict()
+                    config = Config(fileName).get_config_dict()
                     rank = 0  # Set the rank to 0 for single GPU or CPU
                     trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
                     trainer.train_loop(rank)
 
                     
-                    PATH = "./results/"+name
+                    PATH = "./"+name
                     VAR_DICT = {
                         "test_epoch": 5,
                         "n_gpu": 1,
