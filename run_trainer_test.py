@@ -50,8 +50,6 @@ if __name__ == "__main__":
                     
                     f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
 
-                    self.file.write(str(trainAcc) + "," + str(bestTrainAcc) + "," + str(testAcc) + ","+str(bestTestAcc) + ","+str(valAcc)+"," + str(bestValAcc))
-                    self.file.write(str(final_acc) + "," + str(best_acc))
                     config = Config("config/test_run.yaml").get_config_dict()
                     rank = 0  # Set the rank to 0 for single GPU or CPU
                     trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
