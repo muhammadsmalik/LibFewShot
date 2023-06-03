@@ -68,7 +68,7 @@ if __name__ == "__main__":
 
                     config = Config(os.path.join(PATH, "config.yaml"), VAR_DICT).get_config_dict()
 
-                    test = Test(0, config, PATH, f)
+                    test = Test(0, config, f, PATH)
                     
                     test.test_loop()
 

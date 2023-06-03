@@ -32,7 +32,7 @@ class Test(object):
     Build a tester from config dict, set up model from a saved checkpoint, etc. Test and log.
     """
 
-    def __init__(self, rank, config, result_path=None, file):
+    def __init__(self, rank, config, file, result_path=None):
         self.file = file
         print("Init test", flush=True)
         self.rank = rank

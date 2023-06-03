@@ -28,6 +28,7 @@ if __name__ == "__main__":
     #     torch.multiprocessing.spawn(main, nprocs=config["n_gpu"], args=(config,))
     # else:
     print("Before test loop: Init test")
+    # TODO: Add the file for run_test. Updated run_trainer_test.py. Please refer there.
     test = Test(0, config, PATH)
     print("Before test loop: Start")
     test.test_loop()
