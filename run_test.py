@@ -9,7 +9,7 @@ from core.config import Config
 from core import Test
 
 
-PATH = "./results/ProtoNet-consolidated_seeds_dataset-Conv64F-2-1-Jun-03-2023-12-43-52"
+PATH = "./results/trial"
 VAR_DICT = {
     "test_epoch": 5,
     "device_ids": "4,5",
