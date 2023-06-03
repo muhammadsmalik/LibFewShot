@@ -18,7 +18,7 @@ dataloader_num: 1
 deterministic: true
 device_ids: 0
 episode_size: 1
-epoch: 1
+epoch: 10
 image_size: 84
 includes:
 - headers/data.yaml
@@ -45,7 +45,7 @@ optimizer:
   other: null
 parallel_part:
 - emb_func
-port: 43137
+port: 49995
 pretrain_path: null
 query_num: 1
 rank: 0
