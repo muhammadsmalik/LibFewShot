@@ -83,6 +83,7 @@ class Test(object):
             total_h[epoch_idx] = h
 
         aver_accuracy, h = mean_confidence_interval(total_accuracy_vector)
+        print("Best accuracy: {:.3f}".format(best_acc), flush=True)
         print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h), flush=True)
         print("............Testing is end............", flush=True)
 
