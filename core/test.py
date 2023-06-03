@@ -33,6 +33,7 @@ class Test(object):
     """
 
     def __init__(self, rank, config, result_path=None):
+        print("Init test")
         self.rank = rank
         self.config = config
         self.config["rank"] = rank
@@ -46,6 +47,7 @@ class Test(object):
         # print(config)
         self.model, self.model_type = self._init_model(config)
         self.test_loader = self._init_dataloader(config)
+        print("Finish init test")
 
     def test_loop(self):
         """
