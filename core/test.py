@@ -67,7 +67,7 @@ class Test(object):
         total_accuracy = 0.0
         total_h = np.zeros(self.config["test_epoch"])
         total_accuracy_vector = []
-
+        best_acc = 0
         print("Inside test loop: Start", flush=True)
         print(self.config["test_epoch"], flush=True)
 
@@ -75,6 +75,9 @@ class Test(object):
             print("============ Testing on the test set ============", flush=True)
             _, accuracies = self._validate(epoch_idx)
             test_accuracy, h = mean_confidence_interval(accuracies)
+            if test_accuracy > best_acc{
+                best_acc = test_accuracy
+            }
             print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h), flush=True)
             total_accuracy += test_accuracy
             total_accuracy_vector.extend(accuracies)

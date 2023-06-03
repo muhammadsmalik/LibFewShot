@@ -18,6 +18,8 @@ test_episode: 1
 epoch: 10
 test_epoch: 1
 
+result_root: ./results100
+
 backbone:
   name: Conv64F
   kwargs:
