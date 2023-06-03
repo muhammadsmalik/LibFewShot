@@ -35,17 +35,28 @@ class Test(object):
     def __init__(self, rank, config, result_path=None):
         print("Init test", flush=True)
         self.rank = rank
+        print("Rank", flush=True)
         self.config = config
+        print("config", flush=True)
         self.config["rank"] = rank
+        print("config rank", flush=True)
         self.result_path = result_path
+        print("result path", flush=True)
         self.distribute = self.config["n_gpu"] > 1
+        print("distrubute", flush=True)
         self.viz_path, self.state_dict_path = self._init_files(config)
+        print("viz_path", flush=True)
         self.logger = self._init_logger()
+        print("logger", flush=True)
         self.device, self.list_ids = self._init_device(rank, config)
+        print("device", flush=True)
         self.writer = self._init_writer(self.viz_path)
+        print("writer", flush=True)
         self.test_meter = self._init_meter()
+        print("test meter", flush=True)
         # print(config)
         self.model, self.model_type = self._init_model(config)
+        print("model", flush=True)
         self.test_loader = self._init_dataloader(config)
         print("Finish init test", flush=True)
 
