@@ -8,29 +8,30 @@ from core import Trainer
 
 import os
 import torch
+from core import Test
 
 if __name__ == "__main__":
-    modelCollection = ["Baseline", 
-                   "Baseline++", 
-                   "RFS", 
-                   "SKD", 
-                   "MAML", 
-                   "VERSA", 
-                   "R2D2", 
-                   "LEO", 
-                   "MTL_meta", 
-                   "ANIL", 
-                   "BOIL", 
-                   "Proto", 
-                   "RelationNet", 
-                   "ConvMNet", 
-                   "DN4", 
-                   "CAN", 
-                   "ATL_NET", 
-                   "ADM", 
-                   "FEAT", 
-                   "RENet", 
-                   "DeepBdc"]
+    modelCollection = ["baseline", 
+                   "baseline++", 
+                   "rfs", 
+                   "skd", 
+                   "maml", 
+                   "versa", 
+                   "r2d2", 
+                   "leo", 
+                   "mtl", 
+                   "anil", 
+                   "boil", 
+                   "proto", 
+                   "relation", 
+                   "convm", 
+                   "dn4", 
+                   "can", 
+                   "atl_net", 
+                   "adm", 
+                   "feat", 
+                   "renet", 
+                   "deepbdc"]
     numberOfShotsCollection = [1,5,10]
     backbonesCollection = ["Conv64F", "resnet12", "resnet18", "Conv32F"]
     trialRunCollection = [1,2,3]

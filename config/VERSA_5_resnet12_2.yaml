@@ -3,9 +3,17 @@ backbone:
     is_feature: false
     is_flatten: true
     last_pool: true
-    leaky_relu: false
+    leaky_relu: true
     negative_slope: 0.2
   name: Conv64F
+classifier:
+  kwargs:
+    d_theta: 256
+    drop_rate: 0.5
+    feat_dim: 1600
+    sample_num: 10
+  name: VERSA
+deterministic: false
 device_ids: 0
 episode_size: 1
 includes:
@@ -14,11 +22,11 @@ includes:
 - headers/misc.yaml
 - headers/model.yaml
 - headers/optimizer.yaml
-- classifiers/VERSA.yaml
-- backbones/resnet12.yaml
 query_num: 15
-result_root: ./results
 shot_num: 1
 test_episode: 100
+test_query: 15
+test_shot: 5
+test_way: 5
 train_episode: 100
 way_num: 2
