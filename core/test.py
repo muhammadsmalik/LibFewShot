@@ -32,7 +32,8 @@ class Test(object):
     Build a tester from config dict, set up model from a saved checkpoint, etc. Test and log.
     """
 
-    def __init__(self, rank, config, result_path=None):
+    def __init__(self, rank, config, result_path=None, file):
+        self.file = file
         print("Init test", flush=True)
         self.rank = rank
         print("Rank", flush=True)
@@ -68,6 +69,7 @@ class Test(object):
         total_h = np.zeros(self.config["test_epoch"])
         total_accuracy_vector = []
         best_acc = 0
+        final_acc = 0
         print("Inside test loop: Start", flush=True)
         print(self.config["test_epoch"], flush=True)
 
@@ -77,11 +79,13 @@ class Test(object):
             test_accuracy, h = mean_confidence_interval(accuracies)
             if test_accuracy > best_acc:
                 best_acc = test_accuracy
+            final_acc = test_accuracy
             print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h), flush=True)
             total_accuracy += test_accuracy
             total_accuracy_vector.extend(accuracies)
             total_h[epoch_idx] = h
-
+        
+        self.file.write(str(final_acc) + "," + str(best_acc))
         aver_accuracy, h = mean_confidence_interval(total_accuracy_vector)
         print("Best accuracy: {:.3f}".format(best_acc), flush=True)
         print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h), flush=True)

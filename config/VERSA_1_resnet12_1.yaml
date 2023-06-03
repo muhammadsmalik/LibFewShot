@@ -1,0 +1,24 @@
+backbone:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv64F
+device_ids: 0
+episode_size: 1
+includes:
+- headers/data.yaml
+- headers/device.yaml
+- headers/misc.yaml
+- headers/model.yaml
+- headers/optimizer.yaml
+- classifiers/VERSA
+- backbones/resnet12
+query_num: 15
+result_root: ./VERSA_1_resnet12_1
+shot_num: 1
+test_episode: 100
+train_episode: 100
+way_num: 2

@@ -44,7 +44,8 @@ class Trainer(object):
     Build a trainer from config dict, set up optimizer, model, etc. Train/test/val and log.
     """
 
-    def __init__(self, rank, config, result_dir):
+    def __init__(self, rank, config, result_dir, f):
+        self.file = f
         self.rank = rank
         self.config = config
         self.config["rank"] = rank
@@ -80,6 +81,12 @@ class Trainer(object):
         The normal train loop: train-val-test and save model when val-acc increases.
         """
         experiment_begin = time()
+        trainAcc = 0
+        bestTrainAcc = 0
+        testAcc = 0
+        bestTestAcc =0
+        valAcc = 0
+        bestValAcc = 0
         for epoch_idx in range(self.from_epoch + 1, self.config["epoch"]):
             if self.distribute and self.model_type == ModelType.FINETUNING:
                 self.train_loader[0].sampler.set_epoch(epoch_idx)
@@ -87,6 +94,13 @@ class Trainer(object):
             print("learning rate: {}".format(self.scheduler.get_last_lr()))
             train_acc = self._train(epoch_idx)
             print(" * Acc@1 {:.3f} ".format(train_acc))
+            trainAcc = train_acc
+            if trainAcc > bestTrainAcc:
+                bestTrainAcc = trainAcc
+            testAcc = self._validate(epoch_idx, is_test=True)
+            bestTestAcc =self.best_test_acc
+            valAcc = self._validate(epoch_idx, is_test=False)
+            bestValAcc = self.best_val_acc
             if ((epoch_idx + 1) % self.val_per_epoch) == 0:
                 print("============ Validation on the val set ============")
                 val_acc = self._validate(epoch_idx, is_test=False)
@@ -115,7 +129,8 @@ class Trainer(object):
                         self._save_model(epoch_idx, SaveType.NORMAL)
 
                 self._save_model(epoch_idx, SaveType.LAST)
-
+        
+        self.file.write(str(trainAcc) + "," + str(bestTrainAcc) + "," + str(testAcc) + ","+str(bestTestAcc) + ","+str(valAcc)+"," + str(bestValAcc) + ",")
         if self.rank == 0:
             print(
                 "End of experiment, took {}".format(
