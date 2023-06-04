@@ -32,9 +32,10 @@ class Test(object):
     Build a tester from config dict, set up model from a saved checkpoint, etc. Test and log.
     """
 
-    def __init__(self, rank, config, file, result_path=None):
+    def __init__(self, rank, config, file, name, result_path=None):
         self.file = file
         self.rank = rank
+        self.namePrintOut = name
         self.config = config
         self.config["rank"] = rank
         self.result_path = result_path
@@ -62,12 +63,14 @@ class Test(object):
 
         for epoch_idx in range(self.config["test_epoch"]):
             print("============ Testing on the test set ============", flush=True)
+            print(self.printName, flush=True)
             _, accuracies = self._validate(epoch_idx)
             test_accuracy, h = mean_confidence_interval(accuracies)
             if test_accuracy > best_acc:
                 best_acc = test_accuracy
             final_acc = test_accuracy
             print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h), flush=True)
+            print(self.printName, flush=True)
             total_accuracy += test_accuracy
             total_accuracy_vector.extend(accuracies)
             total_h[epoch_idx] = h
@@ -75,8 +78,11 @@ class Test(object):
         self.file.write(str(final_acc) + "," + str(best_acc))
         aver_accuracy, h = mean_confidence_interval(total_accuracy_vector)
         print("Best accuracy: {:.3f}".format(best_acc), flush=True)
+        print(self.printName, flush=True)
         print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h), flush=True)
+        print(self.printName, flush=True)
         print("............Testing is end............", flush=True)
+        print(self.printName, flush=True)
 
         if self.writer is not None:
             self.writer.close()
@@ -160,6 +166,7 @@ class Test(object):
                         )
                     )
                     print(info_str, flush=True)
+                    print(self.printName, flush=True)
                 end = time()
 
 

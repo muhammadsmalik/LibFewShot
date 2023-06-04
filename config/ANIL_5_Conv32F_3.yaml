@@ -31,6 +31,6 @@ optimizer:
   other: null
 query_num: 15
 shot_num: 5
-test_episode: 100
+test_episode: 2000
 train_episode: 100
 way_num: 2

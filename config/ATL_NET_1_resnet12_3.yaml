@@ -15,6 +15,7 @@ classifier:
   name: ATLNet
 device_ids: 0
 episode_size: 1
+epoch: 100
 includes:
 - headers/data.yaml
 - headers/device.yaml
@@ -26,6 +27,6 @@ includes:
 n_gpu: 1
 query_num: 15
 shot_num: 1
-test_episode: 100
+test_episode: 2000
 train_episode: 100
 way_num: 2

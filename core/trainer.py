@@ -44,10 +44,11 @@ class Trainer(object):
     Build a trainer from config dict, set up optimizer, model, etc. Train/test/val and log.
     """
 
-    def __init__(self, rank, config, result_dir, f):
+    def __init__(self, rank, config, result_dir, f, name):
         self.file = f
         self.rank = rank
         self.config = config
+        self.printName = name
         self.config["rank"] = rank
         self.distribute = self.config["n_gpu"] > 1
         (
@@ -91,9 +92,12 @@ class Trainer(object):
             if self.distribute and self.model_type == ModelType.FINETUNING:
                 self.train_loader[0].sampler.set_epoch(epoch_idx)
             print("============ Train on the train set ============", flush=True)
+            print(self.printName, flush=True)
             print("learning rate: {}".format(self.scheduler.get_last_lr()), flush=True)
+            print(self.printName, flush=True)
             train_acc = self._train(epoch_idx)
             print(" * Acc@1 {:.3f} ".format(train_acc), flush=True)
+            print(self.printName, flush=True)
             trainAcc = train_acc
             if trainAcc > bestTrainAcc:
                 bestTrainAcc = trainAcc
@@ -103,17 +107,21 @@ class Trainer(object):
             bestValAcc = self.best_val_acc
             if ((epoch_idx + 1) % self.val_per_epoch) == 0:
                 print("============ Validation on the val set ============", flush=True)
+                print(self.printName, flush=True)
                 val_acc = self._validate(epoch_idx, is_test=False)
                 print(
                     " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc), flush=True
                 )
+                print(self.printName, flush=True)
                 print("============ Testing on the test set ============", flush=True)
+                print(self.printName, flush=True)
                 test_acc = self._validate(epoch_idx, is_test=True)
                 print(
                     " * Acc@1 {:.3f} Best acc {:.3f}".format(
                         test_acc, self.best_test_acc
                     ), flush=True
                 )
+                print(self.printName, flush=True)
             time_scheduler = self._cal_time_scheduler(experiment_begin, epoch_idx)
             # print(" * Time: {}".format(time_scheduler))
             self.scheduler.step()
@@ -137,7 +145,9 @@ class Trainer(object):
                     str(datetime.timedelta(seconds=int(time() - experiment_begin)))
                 ), flush=True
             )
+            print(self.printName, flush=True)
             print("Result DIR: {}".format(self.result_path), flush=True)
+            print(self.printName, flush=True)
 
         if self.writer is not None:
             self.writer.close()
@@ -455,8 +465,10 @@ class Trainer(object):
 
             if len(msg.missing_keys) != 0:
                 print("Missing keys:{}".format(msg.missing_keys), level="warning", flush=True)
+                print(self.printName, flush=True)
             if len(msg.unexpected_keys) != 0:
                 print("Unexpected keys:{}".format(msg.unexpected_keys), level="warning", flush=True)
+                print(self.printName, flush=True)
 
         if self.config["resume"]:
             resume_path = os.path.join(
@@ -468,8 +480,10 @@ class Trainer(object):
 
             if len(msg.missing_keys) != 0:
                 print("missing keys:{}".format(msg.missing_keys), level="warning", flush=True)
+                print(self.printName, flush=True)
             if len(msg.unexpected_keys) != 0:
                 print("unexpected keys:{}".format(msg.unexpected_keys), level="warning", flush=True)
+                print(self.printName, flush=True)
 
         if self.distribute:
             # higher order grad of BN in multi gpu will conflict with syncBN
