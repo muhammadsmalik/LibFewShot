@@ -1,11 +1,11 @@
 backbone:
   kwargs:
     is_feature: false
-    is_flatten: true
-    last_pool: true
+    is_flatten: false
+    last_pool: false
     leaky_relu: false
     negative_slope: 0.2
-  name: Conv64F
+  name: Conv32F
 batch_size: 128
 classifier:
   kwargs:

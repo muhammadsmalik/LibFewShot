@@ -4,13 +4,10 @@ augment_times: 1
 augment_times_query: 1
 backbone:
   kwargs:
+    avg_pool: true
     is_feature: false
-    is_flatten: false
-    last_pool: true
-    leaky_relu: false
-    maxpool_last2: true
-    negative_slope: 0.2
-  name: Conv64F
+    is_flatten: true
+  name: resnet18
 batch_size: 128
 classifier:
   kwargs:

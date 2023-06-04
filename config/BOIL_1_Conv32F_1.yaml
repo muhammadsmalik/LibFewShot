@@ -4,12 +4,11 @@ augment_times_query: 1
 backbone:
   kwargs:
     is_feature: false
-    is_flatten: true
-    last_pool: true
+    is_flatten: false
+    last_pool: false
     leaky_relu: false
-    maxpool_last2: true
-    negative_slope: 0.0
-  name: Conv64F
+    negative_slope: 0.2
+  name: Conv32F
 classifier:
   kwargs:
     feat_dim: 1600

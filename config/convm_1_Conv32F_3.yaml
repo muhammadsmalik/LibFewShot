@@ -3,10 +3,9 @@ backbone:
     is_feature: false
     is_flatten: false
     last_pool: false
-    leaky_relu: true
-    maxpool_last2: false
+    leaky_relu: false
     negative_slope: 0.2
-  name: Conv64F
+  name: Conv32F
 classifier:
   kwargs:
     n_local: 441

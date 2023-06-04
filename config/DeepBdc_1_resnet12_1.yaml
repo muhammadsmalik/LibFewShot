@@ -4,8 +4,11 @@ augment_times: 1
 augment_times_query: 1
 backbone:
   kwargs:
-    reduce_dim: 640
-  name: resnet12Bdc
+    avg_pool: true
+    is_flatten: true
+    keep_prob: 0.0
+    maxpool_last2: true
+  name: resnet12
 batch_size: 64
 classifier:
   kwargs: null

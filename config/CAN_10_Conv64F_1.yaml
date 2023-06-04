@@ -3,8 +3,10 @@ backbone:
     is_feature: false
     is_flatten: false
     last_pool: false
-    leaky_relu: true
+    leaky_relu: false
+    maxpool_last2: true
     negative_slope: 0.2
+    use_running_statistics: true
   name: Conv64F
 classifier:
   kwargs:
@@ -25,7 +27,7 @@ includes:
 - backbones/Conv64F.yaml
 n_gpu: 1
 query_num: 15
-shot_num: 1
+shot_num: 10
 test_episode: 100
 train_episode: 100
 way_num: 2

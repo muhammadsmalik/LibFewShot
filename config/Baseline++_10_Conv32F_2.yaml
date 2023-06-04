@@ -1,11 +1,11 @@
 backbone:
   kwargs:
     is_feature: false
-    is_flatten: true
-    last_pool: true
+    is_flatten: false
+    last_pool: false
     leaky_relu: false
     negative_slope: 0.2
-  name: Conv64F
+  name: Conv32F
 batch_size: 128
 classifier:
   kwargs:
@@ -31,7 +31,7 @@ includes:
 - backbones/resnet18.yaml
 n_gpu: 1
 query_num: 15
-shot_num: 1
+shot_num: 10
 test_episode: 100
 train_episode: 100
 way_num: 2

@@ -1,11 +1,9 @@
 backbone:
   kwargs:
+    avg_pool: true
     is_feature: false
     is_flatten: true
-    last_pool: true
-    leaky_relu: true
-    negative_slope: 0.2
-  name: Conv64F
+  name: resnet18
 classifier:
   kwargs:
     d_theta: 256

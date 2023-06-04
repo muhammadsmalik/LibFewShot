@@ -1,7 +1,13 @@
 backbone:
   kwargs:
-    keep_prob: 0.0
-  name: resnet12
+    is_feature: false
+    is_flatten: false
+    last_pool: false
+    leaky_relu: false
+    maxpool_last2: true
+    negative_slope: 0.2
+    use_running_statistics: true
+  name: Conv64F
 classifier:
   kwargs:
     encoder_penalty_weight: 1e-9

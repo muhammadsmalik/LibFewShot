@@ -4,13 +4,11 @@ augment_times: 1
 augment_times_query: 1
 backbone:
   kwargs:
-    is_feature: false
-    is_flatten: false
-    last_pool: true
-    leaky_relu: false
+    avg_pool: true
+    is_flatten: true
+    keep_prob: 0.0
     maxpool_last2: true
-    negative_slope: 0.2
-  name: Conv64F
+  name: resnet12
 batch_size: 128
 classifier:
   kwargs:
@@ -64,7 +62,7 @@ save_interval: 10
 save_part:
 - emb_func
 seed: 0
-shot_num: 1
+shot_num: 5
 tag: null
 tb_scale: 1.5
 test_episode: 100

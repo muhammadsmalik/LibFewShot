@@ -1,11 +1,10 @@
 backbone:
   kwargs:
-    is_feature: false
+    avg_pool: true
     is_flatten: true
-    last_pool: true
-    leaky_relu: false
-    negative_slope: 0.2
-  name: Conv64F
+    keep_prob: 0.0
+    maxpool_last2: true
+  name: resnet12
 device_ids: 0
 episode_size: 1
 includes:

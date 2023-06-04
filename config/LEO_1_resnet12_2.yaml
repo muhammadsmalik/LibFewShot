@@ -1,6 +1,9 @@
 backbone:
   kwargs:
+    avg_pool: true
+    is_flatten: true
     keep_prob: 0.0
+    maxpool_last2: true
   name: resnet12
 classifier:
   kwargs:

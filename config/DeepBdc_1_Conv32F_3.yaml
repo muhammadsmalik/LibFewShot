@@ -4,8 +4,12 @@ augment_times: 1
 augment_times_query: 1
 backbone:
   kwargs:
-    reduce_dim: 640
-  name: resnet12Bdc
+    is_feature: false
+    is_flatten: false
+    last_pool: false
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv32F
 batch_size: 64
 classifier:
   kwargs: null
