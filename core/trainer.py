@@ -146,8 +146,8 @@ class Trainer(object):
                 ), flush=True
             )
             # print(self.printName, flush=True)
-            print("Result DIR: {}".format(self.result_path), flush=True)
-            print(self.printName, flush=True)
+            print("Result DIR: {}".format(self.result_path))
+            print(self.printName)
 
         if self.writer is not None:
             self.writer.close()
