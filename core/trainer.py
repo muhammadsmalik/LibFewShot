@@ -660,7 +660,7 @@ class Trainer(object):
                             save_type,
                             len(self.list_ids) > 1,
                         )
-                    else:
+                    # else:
                         # print(
                         #     "{} is not included in {}".format(
                         #         save_part, self.config["classifier"]["name"]
