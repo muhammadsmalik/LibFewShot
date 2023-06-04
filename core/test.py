@@ -159,7 +159,7 @@ class Test(object):
                             meter.avg("acc"),
                         )
                     )
-                    # print(info_str)
+                    print(info_str)
                 end = time()
 
 
@@ -194,14 +194,14 @@ class Test(object):
         log_path = os.path.join(result_path, "log_files")
         viz_path = os.path.join(log_path, "tfboard_files")
 
-        init_logger_config(
-            config["log_level"],
-            log_path,
-            config["classifier"]["name"],
-            config["backbone"]["name"],
-            is_train=False,
-            rank=self.rank,
-        )
+        # init_logger_config(
+        #     config["log_level"],
+        #     log_path,
+        #     config["classifier"]["name"],
+        #     config["backbone"]["name"],
+        #     is_train=False,
+        #     rank=self.rank,
+        # )
 
         state_dict_path = os.path.join(result_path, "checkpoints", "model_best.pth")
         if self.rank == 0:

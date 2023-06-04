@@ -131,13 +131,13 @@ class Trainer(object):
                 self._save_model(epoch_idx, SaveType.LAST)
         
         self.file.write(str(trainAcc) + "," + str(bestTrainAcc) + "," + str(testAcc) + ","+str(bestTestAcc) + ","+str(valAcc)+"," + str(bestValAcc) + ",")
-        # if self.rank == 0:
-            # print(
-            #     "End of experiment, took {}".format(
-            #         str(datetime.timedelta(seconds=int(time() - experiment_begin)))
-            #     )
-            # )
-            # print("Result DIR: {}".format(self.result_path))
+        if self.rank == 0:
+            print(
+                "End of experiment, took {}".format(
+                    str(datetime.timedelta(seconds=int(time() - experiment_begin)))
+                )
+            )
+            print("Result DIR: {}".format(self.result_path))
 
         if self.writer is not None:
             self.writer.close()
@@ -243,7 +243,7 @@ class Trainer(object):
                         meter.avg("acc1"),
                     )
                 )
-                # print(info_str)
+                print(info_str)
             end = time()
 
         return meter.avg("acc1")
@@ -322,7 +322,7 @@ class Trainer(object):
                             meter.avg("acc1"),
                         )
                     )
-                    # print(info_str)
+                    print(info_str)
                 end = time()
 
         if self.distribute:
@@ -356,7 +356,7 @@ class Trainer(object):
                 config["shot_num"],
             )
             result_path = os.path.join(config["result_root"], result_dir)
-            # print("Result DIR: " + result_path)
+            print("Result DIR: " + result_path)
             checkpoints_path = os.path.join(result_path, "checkpoints")
             log_path = os.path.join(result_path, "log_files")
             viz_path = os.path.join(log_path, "tfboard_files")
@@ -368,13 +368,13 @@ class Trainer(object):
                 ) as fout:
                     fout.write(yaml.dump(config))
 
-        init_logger_config(
-            config["log_level"],
-            log_path,
-            config["classifier"]["name"],
-            config["backbone"]["name"],
-            rank=self.rank,
-        )
+        # init_logger_config(
+        #     config["log_level"],
+        #     log_path,
+        #     config["classifier"]["name"],
+        #     config["backbone"]["name"],
+        #     rank=self.rank,
+        # )
 
         return result_path, log_path, checkpoints_path, viz_path
 
