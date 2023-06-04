@@ -367,6 +367,7 @@ class Trainer(object):
             )
             result_path = os.path.join(config["result_root"], result_dir)
             print("Result DIR: " + result_path, flush=True)
+            print(self.printName, flush=True)
             checkpoints_path = os.path.join(result_path, "checkpoints")
             log_path = os.path.join(result_path, "log_files")
             viz_path = os.path.join(log_path, "tfboard_files")
