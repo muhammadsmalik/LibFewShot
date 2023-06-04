@@ -90,10 +90,10 @@ class Trainer(object):
         for epoch_idx in range(self.from_epoch + 1, self.config["epoch"]):
             if self.distribute and self.model_type == ModelType.FINETUNING:
                 self.train_loader[0].sampler.set_epoch(epoch_idx)
-            # print("============ Train on the train set ============")
-            # print("learning rate: {}".format(self.scheduler.get_last_lr()))
+            print("============ Train on the train set ============")
+            print("learning rate: {}".format(self.scheduler.get_last_lr()))
             train_acc = self._train(epoch_idx)
-            # print(" * Acc@1 {:.3f} ".format(train_acc))
+            print(" * Acc@1 {:.3f} ".format(train_acc))
             trainAcc = train_acc
             if trainAcc > bestTrainAcc:
                 bestTrainAcc = trainAcc
@@ -102,18 +102,18 @@ class Trainer(object):
             valAcc = self._validate(epoch_idx, is_test=False)
             bestValAcc = self.best_val_acc
             if ((epoch_idx + 1) % self.val_per_epoch) == 0:
-                # print("============ Validation on the val set ============")
+                print("============ Validation on the val set ============")
                 val_acc = self._validate(epoch_idx, is_test=False)
-                # print(
-                #     " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc)
-                # )
-                # print("============ Testing on the test set ============")
+                print(
+                    " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc)
+                )
+                print("============ Testing on the test set ============")
                 test_acc = self._validate(epoch_idx, is_test=True)
-                # print(
-                #     " * Acc@1 {:.3f} Best acc {:.3f}".format(
-                #         test_acc, self.best_test_acc
-                #     )
-                # )
+                print(
+                    " * Acc@1 {:.3f} Best acc {:.3f}".format(
+                        test_acc, self.best_test_acc
+                    )
+                )
             time_scheduler = self._cal_time_scheduler(experiment_begin, epoch_idx)
             # print(" * Time: {}".format(time_scheduler))
             self.scheduler.step()
