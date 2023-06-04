@@ -61,22 +61,22 @@ class Test(object):
         
 
         for epoch_idx in range(self.config["test_epoch"]):
-            print("============ Testing on the test set ============", flush=True)
+            print("============ Testing on the test set ============")
             _, accuracies = self._validate(epoch_idx)
             test_accuracy, h = mean_confidence_interval(accuracies)
             if test_accuracy > best_acc:
                 best_acc = test_accuracy
             final_acc = test_accuracy
-            print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h), flush=True)
+            print("Test Accuracy: {:.3f}\t h: {:.3f}".format(test_accuracy, h))
             total_accuracy += test_accuracy
             total_accuracy_vector.extend(accuracies)
             total_h[epoch_idx] = h
         
         self.file.write(str(final_acc) + "," + str(best_acc))
         aver_accuracy, h = mean_confidence_interval(total_accuracy_vector)
-        print("Best accuracy: {:.3f}".format(best_acc), flush=True)
-        print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h), flush=True)
-        print("............Testing is end............", flush=True)
+        print("Best accuracy: {:.3f}".format(best_acc))
+        print("Aver Accuracy: {:.3f}\t Aver h: {:.3f}".format(aver_accuracy, h))
+        print("............Testing is end............")
 
         if self.writer is not None:
             self.writer.close()
@@ -159,7 +159,7 @@ class Test(object):
                             meter.avg("acc"),
                         )
                     )
-                    print(info_str, flush=True)
+                    print(info_str)
                 end = time()
 
 
@@ -299,8 +299,8 @@ class Test(object):
         model = get_instance(arch, "classifier", config, **model_kwargs)
 
         # print(model)
-        print("Trainable params in the model: {}.".format(count_parameters(model)), flush=True)
-        print("Loading the state dict from {}.".format(self.state_dict_path), flush=True)
+        print("Trainable params in the model: {}.".format(count_parameters(model)))
+        print("Loading the state dict from {}.".format(self.state_dict_path))
         state_dict = torch.load(self.state_dict_path, map_location="cpu")
         model.load_state_dict(state_dict)
 
