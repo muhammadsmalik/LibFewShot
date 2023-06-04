@@ -49,16 +49,17 @@ if __name__ == "__main__":
         for model in modelCollection:
             for backbone in backbonesCollection:
                 for trial in trialRunCollection:
-                    name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
+                    # name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
+                    name = test_install
 
-                    # fileName = name + ".yaml"
+                    fileName = name + ".yaml"
                     
-                    # f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
+                    f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
 
-                    # config = Config("config/"+fileName).get_config_dict()
-                    # rank = 0  # Set the rank to 0 for single GPU or CPU
-                    # trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
-                    # trainer.train_loop(rank)
+                    config = Config("config/"+fileName).get_config_dict()
+                    rank = 0  # Set the rank to 0 for single GPU or CPU
+                    trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
+                    trainer.train_loop(rank)
 
                     
                     PATH = "./results/"+name
