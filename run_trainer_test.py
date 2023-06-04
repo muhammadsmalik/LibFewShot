@@ -50,7 +50,7 @@ if __name__ == "__main__":
             for backbone in backbonesCollection:
                 for trial in trialRunCollection:
                     # name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
-                    name = test_install
+                    name = "test_install"
 
                     fileName = name + ".yaml"
                     
