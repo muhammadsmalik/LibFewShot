@@ -91,12 +91,12 @@ class Trainer(object):
         for epoch_idx in range(self.from_epoch + 1, self.config["epoch"]):
             if self.distribute and self.model_type == ModelType.FINETUNING:
                 self.train_loader[0].sampler.set_epoch(epoch_idx)
-            print("============ Train on the train set ============", flush=True)
-            print(self.printName, flush=True)
-            print("learning rate: {}".format(self.scheduler.get_last_lr()), flush=True)
-            print(self.printName, flush=True)
+            # print("============ Train on the train set ============", flush=True)
+            # print(self.printName, flush=True)
+            # print("learning rate: {}".format(self.scheduler.get_last_lr()), flush=True)
+            # print(self.printName, flush=True)
             train_acc = self._train(epoch_idx)
-            print(" * Acc@1 {:.3f} ".format(train_acc), flush=True)
+            # print(" * Acc@1 {:.3f} ".format(train_acc), flush=True)
             print(self.printName, flush=True)
             trainAcc = train_acc
             if trainAcc > bestTrainAcc:
@@ -106,21 +106,21 @@ class Trainer(object):
             valAcc = self._validate(epoch_idx, is_test=False)
             bestValAcc = self.best_val_acc
             if ((epoch_idx + 1) % self.val_per_epoch) == 0:
-                print("============ Validation on the val set ============", flush=True)
-                print(self.printName, flush=True)
+                # print("============ Validation on the val set ============", flush=True)
+                # print(self.printName, flush=True)
                 val_acc = self._validate(epoch_idx, is_test=False)
-                print(
-                    " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc), flush=True
-                )
-                print(self.printName, flush=True)
-                print("============ Testing on the test set ============", flush=True)
-                print(self.printName, flush=True)
+                # print(
+                #     " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc), flush=True
+                # )
+                # print(self.printName, flush=True)
+                # print("============ Testing on the test set ============", flush=True)
+                # print(self.printName, flush=True)
                 test_acc = self._validate(epoch_idx, is_test=True)
-                print(
-                    " * Acc@1 {:.3f} Best acc {:.3f}".format(
-                        test_acc, self.best_test_acc
-                    ), flush=True
-                )
+                # print(
+                #     " * Acc@1 {:.3f} Best acc {:.3f}".format(
+                #         test_acc, self.best_test_acc
+                #     ), flush=True
+                # )
                 print(self.printName, flush=True)
             time_scheduler = self._cal_time_scheduler(experiment_begin, epoch_idx)
             # print(" * Time: {}".format(time_scheduler))
@@ -145,7 +145,7 @@ class Trainer(object):
                     str(datetime.timedelta(seconds=int(time() - experiment_begin)))
                 ), flush=True
             )
-            print(self.printName, flush=True)
+            # print(self.printName, flush=True)
             print("Result DIR: {}".format(self.result_path), flush=True)
             print(self.printName, flush=True)
 
@@ -254,6 +254,7 @@ class Trainer(object):
                     )
                 )
                 print(info_str, flush=True)
+                print(self.printName, flush=True)
             end = time()
 
         return meter.avg("acc1")
