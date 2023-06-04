@@ -41,6 +41,8 @@ if __name__ == "__main__":
             for backbone in backbonesCollection:
                 for trial in trialRunCollection:
                     name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
+                    print("Code is started with: " + name )
+                    
                     # name = "test_run"
 
                     fileName = name + ".yaml"
