@@ -60,7 +60,7 @@ class Trainer(object):
         self.device, self.list_ids = self._init_device(rank, config)
         self.writer = self._init_writer(self.viz_path)
         self.train_meter, self.val_meter, self.test_meter = self._init_meter()
-        print(self.config)
+        # print(self.config)
         self.model, self.model_type = self._init_model(config)
         (
             self.train_loader,
@@ -90,10 +90,10 @@ class Trainer(object):
         for epoch_idx in range(self.from_epoch + 1, self.config["epoch"]):
             if self.distribute and self.model_type == ModelType.FINETUNING:
                 self.train_loader[0].sampler.set_epoch(epoch_idx)
-            print("============ Train on the train set ============")
-            print("learning rate: {}".format(self.scheduler.get_last_lr()))
+            # print("============ Train on the train set ============")
+            # print("learning rate: {}".format(self.scheduler.get_last_lr()))
             train_acc = self._train(epoch_idx)
-            print(" * Acc@1 {:.3f} ".format(train_acc))
+            # print(" * Acc@1 {:.3f} ".format(train_acc))
             trainAcc = train_acc
             if trainAcc > bestTrainAcc:
                 bestTrainAcc = trainAcc
@@ -102,20 +102,20 @@ class Trainer(object):
             valAcc = self._validate(epoch_idx, is_test=False)
             bestValAcc = self.best_val_acc
             if ((epoch_idx + 1) % self.val_per_epoch) == 0:
-                print("============ Validation on the val set ============")
+                # print("============ Validation on the val set ============")
                 val_acc = self._validate(epoch_idx, is_test=False)
-                print(
-                    " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc)
-                )
-                print("============ Testing on the test set ============")
+                # print(
+                #     " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc)
+                # )
+                # print("============ Testing on the test set ============")
                 test_acc = self._validate(epoch_idx, is_test=True)
-                print(
-                    " * Acc@1 {:.3f} Best acc {:.3f}".format(
-                        test_acc, self.best_test_acc
-                    )
-                )
+                # print(
+                #     " * Acc@1 {:.3f} Best acc {:.3f}".format(
+                #         test_acc, self.best_test_acc
+                #     )
+                # )
             time_scheduler = self._cal_time_scheduler(experiment_begin, epoch_idx)
-            print(" * Time: {}".format(time_scheduler))
+            # print(" * Time: {}".format(time_scheduler))
             self.scheduler.step()
 
             if self.rank == 0:
@@ -132,12 +132,12 @@ class Trainer(object):
         
         self.file.write(str(trainAcc) + "," + str(bestTrainAcc) + "," + str(testAcc) + ","+str(bestTestAcc) + ","+str(valAcc)+"," + str(bestValAcc) + ",")
         if self.rank == 0:
-            print(
-                "End of experiment, took {}".format(
-                    str(datetime.timedelta(seconds=int(time() - experiment_begin)))
-                )
-            )
-            print("Result DIR: {}".format(self.result_path))
+            # print(
+            #     "End of experiment, took {}".format(
+            #         str(datetime.timedelta(seconds=int(time() - experiment_begin)))
+            #     )
+            # )
+            # print("Result DIR: {}".format(self.result_path))
 
         if self.writer is not None:
             self.writer.close()
@@ -243,7 +243,7 @@ class Trainer(object):
                         meter.avg("acc1"),
                     )
                 )
-                print(info_str)
+                # print(info_str)
             end = time()
 
         return meter.avg("acc1")
@@ -322,7 +322,7 @@ class Trainer(object):
                             meter.avg("acc1"),
                         )
                     )
-                    print(info_str)
+                    # print(info_str)
                 end = time()
 
         if self.distribute:
@@ -442,14 +442,14 @@ class Trainer(object):
         }
         model = get_instance(arch, "classifier", config, **model_kwargs)
 
-        print(model)
-        print("Trainable params in the model: {}".format(count_parameters(model)))
+        # print(model)
+        # print("Trainable params in the model: {}".format(count_parameters(model)))
         # FIXME: May be inaccurate
 
         if self.config["pretrain_path"] is not None:
-            print(
-                "load pretraining emb_func from {}".format(self.config["pretrain_path"])
-            )
+            # print(
+            #     "load pretraining emb_func from {}".format(self.config["pretrain_path"])
+            # )
             state_dict = torch.load(self.config["pretrain_path"], map_location="cpu")
             msg = model.emb_func.load_state_dict(state_dict, strict=False)
 
@@ -462,7 +462,7 @@ class Trainer(object):
             resume_path = os.path.join(
                 self.config["resume_path"], "checkpoints", "model_last.pth"
             )
-            print("load the resume model checkpoints dict from {}.".format(resume_path))
+            # print("load the resume model checkpoints dict from {}.".format(resume_path))
             state_dict = torch.load(resume_path, map_location="cpu")["model"]
             msg = model.load_state_dict(state_dict, strict=False)
 
@@ -480,12 +480,12 @@ class Trainer(object):
             ):
                 model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
             else:
-                print(
-                    "{} with multi GPU will conflict with syncBN".format(
-                        self.config["classifier"]["name"]
-                    ),
-                    level="warning",
-                )
+                # print(
+                #     "{} with multi GPU will conflict with syncBN".format(
+                #         self.config["classifier"]["name"]
+                #     ),
+                #     level="warning",
+                # )
             # model = model.to(self.rank)
             # model = nn.parallel.DistributedDataParallel(
             #     model,
@@ -566,7 +566,7 @@ class Trainer(object):
         scheduler = GradualWarmupScheduler(
             optimizer, self.config
         )  # if config['warmup']==0, scheduler will be a normal lr_scheduler, jump into this class for details
-        print(optimizer)
+        # print(optimizer)
         from_epoch = -1
         best_val_acc = float("-inf")
         best_test_acc = float("-inf")
@@ -574,11 +574,11 @@ class Trainer(object):
             resume_path = os.path.join(
                 self.config["resume_path"], "checkpoints", "model_last.pth"
             )
-            print(
-                "load the optimizer, lr_scheduler and epoch checkpoints dict from {}.".format(
-                    resume_path
-                )
-            )
+            # print(
+            #     "load the optimizer, lr_scheduler and epoch checkpoints dict from {}.".format(
+            #         resume_path
+            #     )
+            # )
             all_state_dict = torch.load(resume_path, map_location="cpu")
             state_dict = all_state_dict["optimizer"]
             optimizer.load_state_dict(state_dict)
@@ -587,7 +587,7 @@ class Trainer(object):
             from_epoch = all_state_dict["epoch"]
             best_val_acc = all_state_dict["best_val_acc"]
             best_test_acc = all_state_dict["best_val_acc"]
-            print("model resume from the epoch {}".format(from_epoch))
+            # print("model resume from the epoch {}".format(from_epoch))
 
         return optimizer, scheduler, from_epoch, best_val_acc, best_test_acc
 
@@ -661,12 +661,12 @@ class Trainer(object):
                             len(self.list_ids) > 1,
                         )
                     else:
-                        print(
-                            "{} is not included in {}".format(
-                                save_part, self.config["classifier"]["name"]
-                            ),
-                            level="warning",
-                        )
+                        # print(
+                        #     "{} is not included in {}".format(
+                        #         save_part, self.config["classifier"]["name"]
+                        #     ),
+                        #     level="warning",
+                        # )
 
     def _init_meter(self):
         """
