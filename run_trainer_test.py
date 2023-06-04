@@ -81,7 +81,7 @@ if __name__ == "__main__":
                         
 
                         # update progress bar
-                        bar.text("Completed: " + name)
+                        bar()
                     
 
     f.close()
