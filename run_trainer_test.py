@@ -41,6 +41,7 @@ if __name__ == "__main__":
             for backbone in backbonesCollection:
                 for trial in trialRunCollection:
                     name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
+                    printName = "Code is done with: " + name + " with progress: "+ str(total_count_index) + "/" + str(total_count)
                     print("Code is started with: " + name )
                     
                     # name = "test_run"
@@ -51,7 +52,7 @@ if __name__ == "__main__":
 
                     config = Config("config/"+fileName).get_config_dict()
                     rank = 0  # Set the rank to 0 for single GPU or CPU
-                    trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
+                    trainer = Trainer(rank, config, name, f,printName)  # Pass both rank and config arguments
                     trainer.train_loop(rank)
 
                     
@@ -70,7 +71,7 @@ if __name__ == "__main__":
 
                     config = Config(os.path.join(PATH, "config.yaml"), VAR_DICT).get_config_dict()
 
-                    test = Test(0, config, f, PATH)
+                    test = Test(0, config, f, printName, PATH)
                     
                     test.test_loop()
 
@@ -84,7 +85,6 @@ if __name__ == "__main__":
                     # update progress bar
                     # update progress bar
                     total_count_index = total_count_index + 1
-                    print("Code is done with: " + name + " with progress: "+ str(total_count_index) + "/" + str(total_count))
                     
                     
 
