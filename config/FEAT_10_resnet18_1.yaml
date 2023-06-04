@@ -24,6 +24,7 @@ includes:
 - headers/optimizer.yaml
 - classifiers/FEAT.yaml
 - backbones/WRN.yaml
+n_gpu: 1
 query_num: 15
 shot_num: 1
 test_episode: 100

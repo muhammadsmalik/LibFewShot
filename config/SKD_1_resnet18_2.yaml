@@ -28,6 +28,7 @@ includes:
 - headers/optimizer.yaml
 - classifiers/SKD.yaml
 - backbones/resnet12.yaml
+n_gpu: 1
 query_num: 15
 save_part:
 - emb_func

@@ -23,6 +23,7 @@ includes:
 - headers/optimizer.yaml
 - classifiers/RelationNet.yaml
 - backbones/Conv64F.yaml
+n_gpu: 1
 query_num: 15
 shot_num: 1
 test_episode: 100

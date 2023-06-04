@@ -24,6 +24,7 @@ include:
 - headers/optimizer.yaml
 - backbones/Conv64F.yaml
 - classifiers/MTL_meta.yaml
+n_gpu: 1
 pretrain_path: ./results/checkpoint.pth
 query_num: 15
 shot_num: 1
