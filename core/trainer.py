@@ -479,7 +479,7 @@ class Trainer(object):
                 and self.config["n_gpu"] > 1
             ):
                 model = nn.SyncBatchNorm.convert_sync_batchnorm(model)
-            else:
+            # else:
                 # print(
                 #     "{} with multi GPU will conflict with syncBN".format(
                 #         self.config["classifier"]["name"]
