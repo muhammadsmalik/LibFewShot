@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 import sys
-
+import time
 sys.dont_write_bytecode = True
 
 from core.config import Config
@@ -11,89 +11,91 @@ import torch
 from core import Test
 
 if __name__ == "__main__":
-    os.rename("data/consolidated_seeds_dataset/test_2.csv", "data/consolidated_seeds_dataset/test.csv")
-    # modelCollection = ["Baseline", 
-    #                "Baseline++", 
-    #                "RFS", 
-    #                "SKD", 
-    #                "MAML", 
-    #                "VERSA", 
-    #                "R2D2", 
-    #                "LEO", 
-    #                "MTL_meta", 
-    #                "ANIL", 
-    #                "BOIL", 
-    #                "Proto", 
-    #                "RelationNet", 
-    #                "ConvMNet", 
-    #                "DN4", 
-    #                "CAN", 
-    #                "ATL_NET", 
-    #                "ADM", 
-    #                "FEAT", 
-    #                "RENet", 
-    #                "DeepBdc"]
-    # numberOfShotsCollection = [1,5,10]
-    # backbonesCollection = ["Conv64F", "resnet12", "resnet18", "Conv32F"]
-    # trialRunCollection = [1,2,3]
-
-    # # reset final results
-    # f = open("final_result.txt", "w")
-    # f.write("")
-    # f.close()
     
-    # f = open("final_result.txt", "a")
+    modelCollection = ["Baseline", 
+                   "Baseline++", 
+                   "RFS", 
+                   "SKD", 
+                   "MAML", 
+                   "VERSA", 
+                   "R2D2", 
+                   "LEO", 
+                   "MTL_meta", 
+                   "ANIL", 
+                   "BOIL", 
+                   "Proto", 
+                   "RelationNet", 
+                   "ConvMNet", 
+                   "DN4", 
+                   "CAN", 
+                   "ATL_NET", 
+                   "ADM", 
+                   "FEAT", 
+                   "RENet", 
+                   "DeepBdc"]
+    numberOfShotsCollection = [1,5,10]
+    backbonesCollection = ["Conv64F", "resnet12", "resnet18", "Conv32F"]
+    trialRunCollection = [1,2,3]
 
-    # f.write("Model" + "," + "Number of Shots" + "," + "Backbone" + ","+"Trial Number"+","+"Train Accuracy" + "," + "Best Train Accuracy" + "," + "Test 1 Accuracy" + ","+"Test 1 Best Accuracy" + ","+"Validation Accuracy"+"," + "Best Validation Accuracy" +","+"Test 2 Final Accuracy" + "," + "Test 2 Best Accuracy\n")
+    # reset final results
+    f = open("final_result.txt", "w")
+    f.write("")
+    f.close()
+    
+    f = open("final_result.txt", "a")
 
-    # for numShots in numberOfShotsCollection:
-    #     for model in modelCollection:
-    #         for backbone in backbonesCollection:
-    #             for trial in trialRunCollection:
-    #                 # name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
-    #                 name = "test_run"
+    f.write("Model" + "," + "Number of Shots" + "," + "Backbone" + ","+"Trial Number"+","+"Train Accuracy" + "," + "Best Train Accuracy" + "," + "Test 1 Accuracy" + ","+"Test 1 Best Accuracy" + ","+"Validation Accuracy"+"," + "Best Validation Accuracy" +","+"Test 2 Final Accuracy" + "," + "Test 2 Best Accuracy\n")
 
-    #                 fileName = name + ".yaml"
+    for numShots in numberOfShotsCollection:
+        for model in modelCollection:
+            for backbone in backbonesCollection:
+                for trial in trialRunCollection:
+                    # name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
+                    name = "test_run"
+
+                    fileName = name + ".yaml"
                     
-    #                 f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
+                    f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
 
-    #                 config = Config("config/"+fileName).get_config_dict()
-    #                 rank = 0  # Set the rank to 0 for single GPU or CPU
-    #                 trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
-    #                 trainer.train_loop(rank)
-
-                    
-    #                 # swap out the test for a different test folder
-    #                 os.rename("data/consolidated_seeds_dataset/test.csv", "data/consolidated_seeds_dataset/test_temp.csv")
-    #                 os.rename("data/consolidated_seeds_dataset/test_2.csv", "data/consolidated_seeds_dataset/test.csv")
-
-    #                 PATH = "./results/"+name
-    #                 VAR_DICT = {
-    #                     "test_epoch": 5,
-    #                     "n_gpu": 1,
-    #                     "test_episode": 100,
-    #                     "episode_size": 1,
-    #                 }
-
-    #                 config = Config(os.path.join(PATH, "config.yaml"), VAR_DICT).get_config_dict()
-
-    #                 test = Test(0, config, f, PATH)
-                    
-    #                 test.test_loop()
-
-    #                 f.write("\n")
-
-    #                 os.rename("data/consolidated_seeds_dataset/test.csv", "data/consolidated_seeds_dataset/test_2.csv")
-    #                 os.rename("data/consolidated_seeds_dataset/test_temp.csv", "data/consolidated_seeds_dataset/test.csv")
-                    
+                    config = Config("config/"+fileName).get_config_dict()
+                    rank = 0  # Set the rank to 0 for single GPU or CPU
+                    trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
+                    trainer.train_loop(rank)
 
                     
-    #                 break
-    #             break
-    #         break
-    #     break
+                    # swap out the test for a different test folder
+                    os.rename("data/consolidated_seeds_dataset/test.csv", "data/consolidated_seeds_dataset/test_temp.csv")
+                    time.sleep(1)
+                    os.rename("data/consolidated_seeds_dataset/test_2.csv", "data/consolidated_seeds_dataset/test.csv")
 
-    # f.close()
+                    PATH = "./results/"+name
+                    VAR_DICT = {
+                        "test_epoch": 5,
+                        "n_gpu": 1,
+                        "test_episode": 100,
+                        "episode_size": 1,
+                    }
+
+                    config = Config(os.path.join(PATH, "config.yaml"), VAR_DICT).get_config_dict()
+
+                    test = Test(0, config, f, PATH)
+                    
+                    test.test_loop()
+
+                    f.write("\n")
+
+                    os.rename("data/consolidated_seeds_dataset/test.csv", "data/consolidated_seeds_dataset/test_2.csv")
+                    time.sleep(1)
+                    os.rename("data/consolidated_seeds_dataset/test_temp.csv", "data/consolidated_seeds_dataset/test.csv")
+                    
+
+                    
+                    break
+                break
+            break
+        break
+
+    f.close()
 
 # # -*- coding: utf-8 -*-
 # import sys
