@@ -51,17 +51,17 @@ if __name__ == "__main__":
                 for trial in trialRunCollection:
                     name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
 
-                    fileName = name + ".yaml"
+                    # fileName = name + ".yaml"
                     
-                    f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
+                    # f.write(model + "," + str(numShots) + "," + backbone + ","+str(trial)+",")
 
-                    config = Config("config/"+fileName).get_config_dict()
-                    rank = 0  # Set the rank to 0 for single GPU or CPU
-                    trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
-                    trainer.train_loop(rank)
+                    # config = Config("config/"+fileName).get_config_dict()
+                    # rank = 0  # Set the rank to 0 for single GPU or CPU
+                    # trainer = Trainer(rank, config, name, f)  # Pass both rank and config arguments
+                    # trainer.train_loop(rank)
 
                     
-                    PATH = "./"+name
+                    PATH = "./results/"+name
                     VAR_DICT = {
                         "test_epoch": 5,
                         "n_gpu": 1,
