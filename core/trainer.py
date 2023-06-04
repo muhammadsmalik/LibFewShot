@@ -131,7 +131,7 @@ class Trainer(object):
                 self._save_model(epoch_idx, SaveType.LAST)
         
         self.file.write(str(trainAcc) + "," + str(bestTrainAcc) + "," + str(testAcc) + ","+str(bestTestAcc) + ","+str(valAcc)+"," + str(bestValAcc) + ",")
-        if self.rank == 0:
+        # if self.rank == 0:
             # print(
             #     "End of experiment, took {}".format(
             #         str(datetime.timedelta(seconds=int(time() - experiment_begin)))
