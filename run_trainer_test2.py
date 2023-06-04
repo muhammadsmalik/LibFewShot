@@ -12,17 +12,16 @@ from core import Test
 
 if __name__ == "__main__":
     
-    modelCollection = ["Baseline", 
-                   "Baseline++", 
-                   "RFS", 
-                   "SKD", 
-                   "MAML", 
-                   "VERSA", 
-                   "R2D2", 
-                   "LEO", 
-                   "MTL_meta", 
-                   "ANIL", 
-                   "BOIL"]
+    modelCollection = ["Proto", 
+                   "RelationNet", 
+                   "ConvMNet", 
+                   "DN4", 
+                   "CAN", 
+                   "ATL_NET", 
+                   "ADM", 
+                   "FEAT", 
+                   "RENet", 
+                   "DeepBdc"]
     numberOfShotsCollection = [1,5,10]
     backbonesCollection = ["Conv64F", "resnet12", "resnet18", "Conv32F"]
     trialRunCollection = [1,2,3]
