@@ -42,7 +42,7 @@ if __name__ == "__main__":
                 for trial in trialRunCollection:
                     name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
                     printName = "Code is done with: " + name + " with progress: "+ str(total_count_index) + "/" + str(total_count)
-                    print("Code is started with: " + name )
+                    
                     
                     # name = "test_run"
 

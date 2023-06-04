@@ -42,7 +42,6 @@ if __name__ == "__main__":
                     name = model+"_"+str(numShots)+"_"+backbone+"_"+str(trial)
                     printName = "Code is done with: " + name + " with progress: "+ str(total_count_index) + "/" + str(total_count)
                     
-                    print("Code is started with: " + name )
                     # name = "test_run"
 
                     fileName = name + ".yaml"
@@ -83,7 +82,6 @@ if __name__ == "__main__":
 
                     # update progress bar
                     total_count_index = total_count_index + 1
-                    print("Code is done with: " + name + " with progress: "+ str(total_count_index) + "/" + str(total_count))
                     
                     
 
