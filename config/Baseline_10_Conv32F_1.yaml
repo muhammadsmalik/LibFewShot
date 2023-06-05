@@ -1,4 +1,4 @@
-backbone: &id001
+backbone: 
   kwargs:
     is_feature: false
     is_flatten: true

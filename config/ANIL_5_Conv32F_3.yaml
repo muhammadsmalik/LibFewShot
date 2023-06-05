@@ -6,7 +6,7 @@ Convclassifier: &id002
       test_iter: 10
       train_iter: 5
   name: ANIL
-backbone: &id001
+backbone: 
   kwargs:
     is_feature: false
     is_flatten: true

@@ -6,7 +6,7 @@ Convclassifier:
       test_iter: 10
       train_iter: 5
   name: ANIL
-backbone: &id001
+backbone: 
   kwargs:
     keep_prob: 0.0
   name: resnet12

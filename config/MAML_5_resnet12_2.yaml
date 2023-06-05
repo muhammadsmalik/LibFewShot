@@ -6,7 +6,7 @@ Convclassifier:
       test_iter: 10
       train_iter: 5
   name: MAML
-backbone: &id001
+backbone: 
   kwargs: null
   name: resnet12
 backboneConv32F:

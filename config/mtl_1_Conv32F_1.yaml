@@ -6,7 +6,7 @@ Convclassifier: &id002
     num_classes: 64
     use_MTL: true
   name: MTL
-backbone: &id001
+backbone: 
   kwargs:
     is_feature: false
     is_flatten: false

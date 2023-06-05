@@ -11,7 +11,7 @@ Convclassifier: &id002
     kl_weight: 1e-3
     orthogonality_penalty_weight: 1e-3
   name: LEO
-backbone: &id001
+backbone: 
   kwargs:
     is_feature: false
     is_flatten: true

@@ -11,7 +11,7 @@ Convclassifier:
     kl_weight: 1e-3
     orthogonality_penalty_weight: 1e-3
   name: LEO
-backbone: &id001
+backbone: 
   kwargs:
     keep_prob: 0.0
   name: resnet12

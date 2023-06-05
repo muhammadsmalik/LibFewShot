@@ -1,4 +1,4 @@
-backbone: &id001
+backbone: 
   kwargs: null
   name: resnet18
 backboneConv32F:
