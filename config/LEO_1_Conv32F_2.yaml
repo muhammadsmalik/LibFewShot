@@ -19,7 +19,7 @@ backbone:
     leaky_relu: false
     negative_slope: 0.2
   name: Conv32F
-backboneConv32F: *id001
+backboneConv32F: 
 backboneConv64F:
   kwargs:
     is_feature: false

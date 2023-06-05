@@ -20,7 +20,7 @@ backboneConv64F:
 backboneresnet12:
   kwargs: null
   name: resnet12
-backboneresnet18: *id001
+backboneresnet18: 
 data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1

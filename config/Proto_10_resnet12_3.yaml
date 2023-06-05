@@ -18,7 +18,7 @@ backboneConv64F:
     leaky_relu: false
     negative_slope: 0.2
   name: Conv64F
-backboneresnet12: *id001
+backboneresnet12: 
 backboneresnet18:
   kwargs: null
   name: resnet18

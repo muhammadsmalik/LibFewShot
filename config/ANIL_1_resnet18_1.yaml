@@ -29,7 +29,7 @@ backboneresnet12:
   kwargs:
     keep_prob: 0.0
   name: resnet12
-backboneresnet18: *id001
+backboneresnet18: 
 classifier: &id002
   kwargs:
     feat_dim: 512

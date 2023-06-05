@@ -23,7 +23,7 @@ backboneresnet12:
   kwargs:
     keep_prob: 0.0
   name: resnet12
-backboneresnet18: *id001
+backboneresnet18: 
 batch_size: 128
 classifier:
   kwargs:

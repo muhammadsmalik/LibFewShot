@@ -26,7 +26,7 @@ backboneresnet12:
     is_flatten: true
     keep_prob: 0.0
   name: resnet12
-backboneresnet18: *id001
+backboneresnet18: 
 classifier:
   kwargs:
     alpha: 0.5
