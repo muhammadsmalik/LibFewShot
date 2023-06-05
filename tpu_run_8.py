@@ -14,13 +14,13 @@ if __name__ == "__main__":
 
     
 
-    nameCollection=["RFS_1_Conv64F_1","RFS_1_resnet12_1"]
+    nameCollection=["MAML_5_resnet12_1"]
 
-    modelCollection=["RFS","RFS"]
+    modelCollection=["MAML"]
 
-    numShotsCollection=["1","1"]
+    numShotsCollection=["5"]
 
-    backboneCollection=["Conv64F","resnet12"]
+    backboneCollection=["resnet12"]
 
     # reset final results
     f = open("final_result.csv", "w")
@@ -56,9 +56,9 @@ if __name__ == "__main__":
 
         PATH = "./results/"+name
         VAR_DICT = {
-            "test_epoch": 5,
+            "test_epoch": 100,
             "n_gpu": 1,
-            "test_episode": 100,
+            "test_episode": 600,
             "episode_size": 1,
         }
 
