@@ -35,7 +35,7 @@ backboneConv64F:
     negative_slope: 0.2
     last_pool: True
 
-Conv64: feat_dim: 1600
+# Conv64: feat_dim: 1600
 
 backboneresnet12:
   name: resnet12
@@ -51,9 +51,9 @@ backboneresnet18:
     avg_pool: True
     is_flatten: True
 
-resnet12: feat_dim: 640
+# resnet12: feat_dim: 640
 
-resnet18: feat_dim: 512
+# resnet18: feat_dim: 512
 
 #backbone:
 #  name: WRN

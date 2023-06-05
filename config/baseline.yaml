@@ -53,9 +53,9 @@ backboneresnet18:
     is_flatten: True
     
 
-resnet12: feat_dim: 640
+# resnet12: feat_dim: 640
 
-resnet18: feat_dim: 512
+# resnet18: feat_dim: 512
 
 # backbone:
 #   name: WRN
