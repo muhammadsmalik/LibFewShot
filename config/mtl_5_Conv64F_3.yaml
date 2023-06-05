@@ -1,14 +1,4 @@
-backbone:
-  kwargs:
-    is_feature: false
-    is_flatten: false
-    last_pool: false
-    leaky_relu: false
-    maxpool_last2: true
-    negative_slope: 0.2
-    use_running_statistics: true
-  name: Conv64F
-classifier:
+Convclassifier: &id002
   kwargs:
     feat_dim: 1600
     inner_param:
@@ -16,6 +6,32 @@ classifier:
     num_classes: 64
     use_MTL: true
   name: MTL
+backbone: &id001
+  kwargs:
+    is_feature: false
+    is_flatten: false
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv64F
+backboneConv32F:
+  kwargs:
+    is_feature: false
+    is_flatten: false
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F: *id001
+backboneresnet12:
+  kwargs:
+    keep_prob: 0.0
+  name: resnet12
+backboneresnet18:
+  kwargs: null
+  name: resnet18
+classifier: *id002
+data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1
 epoch: 100
@@ -30,6 +46,23 @@ include:
 n_gpu: 1
 pretrain_path: ./results/checkpoint.pth
 query_num: 15
+resnet12classifier:
+  kwargs:
+    feat_dim: 640
+    inner_param:
+      iter: 10
+    num_classes: 64
+    use_MTL: true
+  name: MTL
+resnet18classifier:
+  kwargs:
+    feat_dim: 512
+    inner_param:
+      iter: 10
+    num_classes: 64
+    use_MTL: true
+  name: MTL
+result_root: ./results
 shot_num: 5
 test_episode: 2000
 train_episode: 100

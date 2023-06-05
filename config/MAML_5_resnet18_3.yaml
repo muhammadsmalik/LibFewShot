@@ -1,10 +1,4 @@
-backbone:
-  kwargs:
-    avg_pool: true
-    is_feature: false
-    is_flatten: true
-  name: resnet18
-classifier:
+Convclassifier:
   kwargs:
     feat_dim: 1600
     inner_param:
@@ -12,6 +6,38 @@ classifier:
       test_iter: 10
       train_iter: 5
   name: MAML
+backbone: &id001
+  kwargs: null
+  name: resnet18
+backboneConv32F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv64F
+backboneresnet12:
+  kwargs: null
+  name: resnet12
+backboneresnet18: *id001
+classifier: &id002
+  kwargs:
+    feat_dim: 512
+    inner_param:
+      lr: 1e-2
+      test_iter: 10
+      train_iter: 5
+  name: MAML
+data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1
 epoch: 100
@@ -28,6 +54,16 @@ optimizer:
   name: Adam
   other: null
 query_num: 15
+resnet12classifier:
+  kwargs:
+    feat_dim: 640
+    inner_param:
+      lr: 1e-2
+      test_iter: 10
+      train_iter: 5
+  name: MAML
+resnet18classifier: *id002
+result_root: ./results
 shot_num: 5
 test_episode: 2000
 train_episode: 100

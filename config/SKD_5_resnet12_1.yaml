@@ -1,10 +1,29 @@
-backbone:
+backbone: &id001
   kwargs:
-    avg_pool: true
-    is_flatten: true
     keep_prob: 0.0
-    maxpool_last2: true
   name: resnet12
+backboneConv32F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    maxpool_last2: true
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    maxpool_last2: true
+    negative_slope: 0.2
+  name: Conv64F
+backboneresnet12: *id001
+backboneresnet18:
+  kwargs: null
+  name: resnet18
 batch_size: 128
 classifier:
   kwargs:
@@ -16,6 +35,7 @@ classifier:
     is_distill: false
     num_class: 64
   name: SKDModel
+data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1
 epoch: 100
@@ -29,6 +49,7 @@ includes:
 - backbones/resnet12.yaml
 n_gpu: 1
 query_num: 15
+result_root: ./results
 save_part:
 - emb_func
 - cls_classifier

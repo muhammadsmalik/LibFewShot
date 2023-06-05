@@ -1,16 +1,33 @@
-backbone:
+backbone: &id001
+  kwargs: null
+  name: resnet18
+backboneConv32F:
   kwargs:
-    avg_pool: true
     is_feature: false
     is_flatten: true
-  name: resnet18
-classifier:
+    last_pool: true
+    leaky_relu: true
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F:
   kwargs:
-    d_theta: 256
-    drop_rate: 0.5
-    feat_dim: 1600
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: true
+    negative_slope: 0.2
+  name: Conv64F
+backboneresnet12:
+  kwargs: null
+  name: resnet12
+backboneresnet18: *id001
+classifier: &id002
+  kwargs:
+    feat_dim: 512
+    hid_dim: 512
     sample_num: 10
   name: VERSA
+data_root: data/consolidated_seeds_dataset
 deterministic: false
 device_ids: 0
 episode_size: 1
@@ -23,6 +40,14 @@ includes:
 - headers/optimizer.yaml
 n_gpu: 1
 query_num: 15
+resnet12classifier:
+  kwargs:
+    feat_dim: 640
+    hid_dim: 640
+    sample_num: 10
+  name: VERSA
+resnet18classifier: *id002
+result_root: ./results
 shot_num: 10
 test_episode: 2000
 test_query: 15

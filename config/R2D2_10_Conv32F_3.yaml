@@ -1,11 +1,27 @@
-backbone:
+backbone: &id001
   kwargs:
     is_feature: false
-    is_flatten: false
-    last_pool: false
-    leaky_relu: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: true
     negative_slope: 0.2
   name: Conv32F
+backboneConv32F: *id001
+backboneConv64F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: true
+    negative_slope: 0.2
+  name: Conv64F
+backboneresnet12:
+  kwargs: null
+  name: resnet12
+backboneresnet18:
+  kwargs: null
+  name: resnet18
+data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1
 epoch: 100
@@ -18,6 +34,7 @@ includes:
 - classifiers/R2D2.yaml
 n_gpu: 1
 query_num: 15
+result_root: ./results
 shot_num: 10
 test_episode: 2000
 test_query: 15

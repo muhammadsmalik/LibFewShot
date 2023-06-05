@@ -1,14 +1,8 @@
-backbone:
-  kwargs:
-    avg_pool: true
-    is_feature: false
-    is_flatten: true
-  name: resnet18
-classifier:
+Convclassifier:
   kwargs:
     encoder_penalty_weight: 1e-9
-    feat_dim: 640
-    hid_dim: 64
+    feat_dim: 1600
+    hid_dim: 160
     inner_para:
       finetune_iter: 5
       finetune_lr: 1e-2
@@ -17,6 +11,44 @@ classifier:
     kl_weight: 1e-3
     orthogonality_penalty_weight: 1e-3
   name: LEO
+backbone: &id001
+  kwargs: null
+  name: resnet18
+backboneConv32F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv64F
+backboneresnet12:
+  kwargs:
+    keep_prob: 0.0
+  name: resnet12
+backboneresnet18: *id001
+classifier: &id002
+  kwargs:
+    encoder_penalty_weight: 1e-9
+    feat_dim: 512
+    hid_dim: 50
+    inner_para:
+      finetune_iter: 5
+      finetune_lr: 1e-2
+      iter: 5
+      lr: 1e-2
+    kl_weight: 1e-3
+    orthogonality_penalty_weight: 1e-3
+  name: LEO
+data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1
 epoch: 100
@@ -31,6 +63,21 @@ includes:
 n_gpu: 1
 pretrain_path: ./results/checkpoint.pth
 query_num: 15
+resnet12classifier:
+  kwargs:
+    encoder_penalty_weight: 1e-9
+    feat_dim: 640
+    hid_dim: 64
+    inner_para:
+      finetune_iter: 5
+      finetune_lr: 1e-2
+      iter: 5
+      lr: 1e-2
+    kl_weight: 1e-3
+    orthogonality_penalty_weight: 1e-3
+  name: LEO
+resnet18classifier: *id002
+result_root: ./results
 shot_num: 1
 test_episode: 2000
 test_query: 15

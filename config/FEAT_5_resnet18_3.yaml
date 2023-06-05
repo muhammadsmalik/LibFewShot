@@ -1,9 +1,32 @@
-backbone:
+backbone: &id001
   kwargs:
     avg_pool: true
+    is_flatten: true
+    keep_prob: 0.0
+  name: resnet18
+backboneConv32F:
+  kwargs:
     is_feature: false
     is_flatten: true
-  name: resnet18
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F:
+  kwargs:
+    is_feature: false
+    is_flatten: true
+    last_pool: true
+    leaky_relu: false
+    negative_slope: 0.2
+  name: Conv64F
+backboneresnet12:
+  kwargs:
+    avg_pool: true
+    is_flatten: true
+    keep_prob: 0.0
+  name: resnet12
+backboneresnet18: *id001
 classifier:
   kwargs:
     balance: 0.5
@@ -12,6 +35,7 @@ classifier:
     temperature: 1.0
     temperature2: 1.0
   name: FEAT
+data_root: data/consolidated_seeds_dataset
 device_ids: 0
 episode_size: 1
 epoch: 100
@@ -25,6 +49,7 @@ includes:
 - backbones/WRN.yaml
 n_gpu: 1
 query_num: 15
+result_root: ./results
 shot_num: 5
 test_episode: 2000
 train_episode: 100

@@ -14,13 +14,13 @@ if __name__ == "__main__":
 
     
 
-    nameCollection=["Baseline++_10_resnet18_1","Baseline++_10_Conv32F_1","RFS_10_Conv64F_1"]
+    nameCollection=["SKD_10_Conv64F_1","SKD_10_resnet12_1"]
 
-    modelCollection=["Baseline++","Baseline++","RFS"]
+    modelCollection=["SKD","SKD"]
 
-    numShotsCollection=["10","10","10"]
+    numShotsCollection=["10","10"]
 
-    backboneCollection=["resnet18","Conv32F","Conv64F"]
+    backboneCollection=["Conv64F","resnet12"]
 
     # reset final results
     f = open("final_result.csv", "w")
