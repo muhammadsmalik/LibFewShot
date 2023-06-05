@@ -82,3 +82,14 @@ if __name__ == "__main__":
                     
 
     f.close()
+
+
+    print("", flush=True)
+    print("", flush=True)
+    print("", flush=True)
+    print("Start read csv contents", flush=True)
+    print("", flush=True)
+    f = open('final_result.csv', 'r')
+    content = f.read()
+    print(content, flush=True)
+    f.close()
