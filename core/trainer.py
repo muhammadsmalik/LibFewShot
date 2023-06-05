@@ -334,6 +334,7 @@ class Trainer(object):
                         )
                     )
                     print(info_str)
+                    print(self.printName, flush=True)
                 end = time()
 
         if self.distribute:
