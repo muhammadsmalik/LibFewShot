@@ -38,6 +38,6 @@ n_gpu: 1
 query_num: 15
 result_root: ./results
 shot_num: 10
-test_episode: 2000
-train_episode: 100
+test_episode: 600
+train_episode: 2000
 way_num: 2
