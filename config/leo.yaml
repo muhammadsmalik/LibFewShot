@@ -21,36 +21,45 @@ train_episode: 10
 test_episode: 10
 
 
-# backbone:
-#   name: Conv64F
-#   kwargs:
-#     is_flatten: True
-#     is_feature: False
-#     leaky_relu: False
-#     negative_slope: 0.2
-#     last_pool: True
+backboneConv64F:
+  name: Conv64F
+  kwargs:
+    is_flatten: True
+    is_feature: False
+    leaky_relu: False
+    negative_slope: 0.2
+    last_pool: True
 
-# classifier:
-#   name: LEO
-#   kwargs:
-#     inner_para:
-#       lr: 1e-2
-#       iter: 5
-#       finetune_lr: 1e-2
-#       finetune_iter: 5
-#     feat_dim: 1600
-#     hid_dim: 160
-#     kl_weight: 1e-3
-#     encoder_penalty_weight: 1e-9
-#     orthogonality_penalty_weight: 1e-3
+backboneConv32F:
+  name: Conv32F
+  kwargs:
+    is_flatten: True
+    is_feature: False
+    leaky_relu: False
+    negative_slope: 0.2
+    last_pool: True
+
+Convclassifier:
+  name: LEO
+  kwargs:
+    inner_para:
+      lr: 1e-2
+      iter: 5
+      finetune_lr: 1e-2
+      finetune_iter: 5
+    feat_dim: 1600
+    hid_dim: 160
+    kl_weight: 1e-3
+    encoder_penalty_weight: 1e-9
+    orthogonality_penalty_weight: 1e-3
 
 
-backbone:
+backboneresnet12:
   name: resnet12
   kwargs:
     keep_prob: 0.0
 
-classifier:
+resnet12classifier:
   name: LEO
   kwargs:
     inner_para:
@@ -65,23 +74,23 @@ classifier:
     orthogonality_penalty_weight: 1e-3
 
 
-# backbone:
-#   name: resnet18
-#   kwargs: ~
+backboneresnet18:
+  name: resnet18
+  kwargs: ~
 
-# classifier:
-#   name: LEO
-#   kwargs:
-#     inner_para:
-#       lr: 1e-2
-#       iter: 5
-#       finetune_lr: 1e-2
-#       finetune_iter: 5
-#     feat_dim: 512
-#     hid_dim: 50
-#     kl_weight: 1e-3
-#     encoder_penalty_weight: 1e-9
-#     orthogonality_penalty_weight: 1e-3
+resnet18classifier:
+  name: LEO
+  kwargs:
+    inner_para:
+      lr: 1e-2
+      iter: 5
+      finetune_lr: 1e-2
+      finetune_iter: 5
+    feat_dim: 512
+    hid_dim: 50
+    kl_weight: 1e-3
+    encoder_penalty_weight: 1e-9
+    orthogonality_penalty_weight: 1e-3
 
 
 # backbone:

@@ -33,8 +33,17 @@ classifier:
     emb_func_path: ./results/SKDModel-miniImageNet--ravi-Conv64F-5-1-Sep-23-2021-15-16-27/checkpoints/emb_func_best.pth
     cls_classifier_path: ./results/SKDModel-miniImageNet--ravi-Conv64F-5-1-Sep-23-2021-15-16-27/checkpoints/cls_classifier_best.pth
 
+backboneConv32F:
+  name: Conv32F
+  kwargs:
+    is_flatten: True
+    is_feature: False
+    leaky_relu: False
+    negative_slope: 0.2
+    last_pool: True
+    maxpool_last2: True
 
-backbone:
+backboneConv64F:
   name: Conv64F
   kwargs:
     is_flatten: True
@@ -44,14 +53,14 @@ backbone:
     last_pool: True
     maxpool_last2: True
 
-# backbone:
-#   name: resnet12
-#   kwargs:
-#     keep_prob: 0.0
+backboneresnet12:
+  name: resnet12
+  kwargs:
+    keep_prob: 0.0
 
-# backbone:
-#   name: resnet18
-#   kwargs:
+backboneresnet18:
+  name: resnet18
+  kwargs:
 
 # backbone:
 #   name: WRN

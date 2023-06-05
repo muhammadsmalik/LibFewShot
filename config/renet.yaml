@@ -2,7 +2,16 @@ augment: true
 augment_method: null
 augment_times: 1
 augment_times_query: 1
-backbone:
+backboneConv32F:
+  kwargs:
+    is_feature: false
+    is_flatten: false
+    last_pool: true
+    leaky_relu: false
+    maxpool_last2: true
+    negative_slope: 0.2
+  name: Conv32F
+backboneConv64F:
   kwargs:
     is_feature: false
     is_flatten: false

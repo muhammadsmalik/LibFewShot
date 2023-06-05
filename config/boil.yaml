@@ -48,8 +48,18 @@ classifier:
     feat_dim: 1600
     testing_method: NIL
 
-backbone:
+backboneConv64F:
   name: Conv64F
+  kwargs:
+    is_flatten: True
+    is_feature: False
+    leaky_relu: False
+    negative_slope: 0.0
+    last_pool: True
+    maxpool_last2: True
+
+backboneConv32F:
+  name: Conv32F
   kwargs:
     is_flatten: True
     is_feature: False

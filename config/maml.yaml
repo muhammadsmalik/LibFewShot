@@ -22,7 +22,7 @@ optimizer:
     lr: 1e-3
   other: ~
 
-backbone:
+backboneConv64F:
   name: Conv64F
   kwargs:
     is_flatten: True
@@ -31,7 +31,16 @@ backbone:
     negative_slope: 0.2
     last_pool: True
 
-classifier:
+backboneConv32F:
+  name: Conv32F
+  kwargs:
+    is_flatten: True
+    is_feature: False
+    leaky_relu: False
+    negative_slope: 0.2
+    last_pool: True
+
+Convclassifier:
   name: MAML
   kwargs:
     inner_param:
@@ -41,32 +50,32 @@ classifier:
     feat_dim: 1600
 
 
-# backbone:
-#   name: resnet12
-#   kwargs: ~
+backboneresnet12:
+  name: resnet12
+  kwargs: ~
 
-# classifier:
-#   name: MAML
-#   kwargs:
-#     inner_param:
-#       lr: 1e-2
-#       train_iter: 5
-#       test_iter: 10
-#     feat_dim: 640
+resnet12classifier:
+  name: MAML
+  kwargs:
+    inner_param:
+      lr: 1e-2
+      train_iter: 5
+      test_iter: 10
+    feat_dim: 640
 
 
-# backbone:
-#   name: resnet18
-#   kwargs: ~
+backboneresnet18:
+  name: resnet18
+  kwargs: ~
 
-# classifier:
-#   name: MAML
-#   kwargs:
-#     inner_param:
-#       lr: 1e-2
-#       train_iter: 5
-#       test_iter: 10
-#     feat_dim: 512
+resnet18classifier:
+  name: MAML
+  kwargs:
+    inner_param:
+      lr: 1e-2
+      train_iter: 5
+      test_iter: 10
+    feat_dim: 512
 
 
 # backbone:
