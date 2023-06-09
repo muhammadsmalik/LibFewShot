@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
         config = Config("config/"+fileName).get_config_dict()
         rank = 0  # Set the rank to 0 for single GPU or CPU
-        trainer = Trainer(rank, config, name, f,printName)  # Pass both rank and config arguments
+        trainer = Trainer(rank, config, name, f, printName)  # Pass both rank and config arguments
         trainer.train_loop(rank)
 
         
