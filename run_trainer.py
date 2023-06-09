@@ -9,6 +9,7 @@ from core import Trainer
 if __name__ == "__main__":
 
     name="CAN_Conv64F_1"
+    printName = "Code is done with: " + name + " with progress: "+ str(1) + "/" + str(1)
 
 
     # reset final results
@@ -25,8 +26,8 @@ if __name__ == "__main__":
 
     config = Config("config/test_install.yaml").get_config_dict()
     rank = 0  # Set the rank to 0 for single GPU or CPU
-    trainer = Trainer(rank, config)  # Pass both rank and config arguments
-    # trainer = Trainer(rank, config, name, f, printName) 
+    # trainer = Trainer(rank, config)  # Pass both rank and config arguments
+    trainer = Trainer(rank, config, name, f, printName) 
     trainer.train_loop(rank)
 
 # # -*- coding: utf-8 -*-
