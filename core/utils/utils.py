@@ -248,14 +248,19 @@ def save_model(
         model_state_dict = model.state_dict()
 
     if save_type == SaveType.NORMAL or save_type == SaveType.BEST:
+        model_state_dict = {k: v.cpu().detach() for k, v in model_state_dict.items()}
         torch.save(model_state_dict, save_name)
     else:
+        model_state_dict = {k: v.cpu().detach() for k, v in model_state_dict.items()}
+        optimizer_state_dict = {k: v.cpu().detach() for k, v in optimizer.state_dict().items()}
+        lr_scheduler_state_dict = {k: v.cpu().detach() for k, v in lr_Scheduler.state_dict().items()}
+        
         torch.save(
             {
                 "epoch": epoch,
                 "model": model_state_dict,
-                "optimizer": optimizer.state_dict(),
-                "lr_scheduler": lr_Scheduler.state_dict(),
+                "optimizer": optimizer_state_dict,
+                "lr_scheduler": lr_scheduler_state_dict,
                 "best_val_acc": best_val_acc,
                 "best_test_acc": best_test_acc,
             },
@@ -263,6 +268,7 @@ def save_model(
         )
 
     return save_name
+
 
 
 def init_seed(seed=0, deterministic=False):

@@ -5,6 +5,8 @@
 # installs python requirements, creates a data directory,
 # and downloads a dataset using gsutil.
 
+gcloud compute tpus tpu-vm ssh od3-4 --zone=us-central1-a
+
 # Export environment variable
 export PJRT_DEVICE=TPU
 
