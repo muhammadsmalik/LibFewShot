@@ -45,6 +45,7 @@ class Trainer(object):
     """
 
     def __init__(self, rank, config, result_dir, f, name):
+        print("trainer init", flush=True)
         self.file = f
         self.rank = rank
         self.config = config
@@ -76,6 +77,7 @@ class Trainer(object):
             self.best_test_acc,
         ) = self._init_optim(config)
         self.val_per_epoch = config["val_per_epoch"]
+        print("trainer init done", flush=True)
 
     def train_loop(self, rank):
         """
