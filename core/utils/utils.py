@@ -203,6 +203,17 @@ def prepare_device(rank, device_ids, n_gpu_use, backend, dist_url):
 
     return device, list_ids
 
+def detach_tensors_in_dict(input_dict):
+    detached_dict = {}
+    for k, v in input_dict.items():
+        if isinstance(v, torch.Tensor):
+            detached_dict[k] = v.cpu().detach()
+        elif isinstance(v, dict):
+            detached_dict[k] = detach_tensors_in_dict(v)
+        else:
+            detached_dict[k] = v
+    return detached_dict
+
 
 def save_model(
     model,
@@ -247,14 +258,16 @@ def save_model(
     else:
         model_state_dict = model.state_dict()
 
+    # Update the code in utils.py
+
     if save_type == SaveType.NORMAL or save_type == SaveType.BEST:
-        model_state_dict = {k: v.cpu().detach() for k, v in model_state_dict.items()}
+        model_state_dict = detach_tensors_in_dict(model_state_dict)
         torch.save(model_state_dict, save_name)
     else:
-        model_state_dict = {k: v.cpu().detach() for k, v in model_state_dict.items()}
-        optimizer_state_dict = {k: v.cpu().detach() for k, v in optimizer.state_dict().items()}
-        lr_scheduler_state_dict = {k: v.cpu().detach() for k, v in lr_Scheduler.state_dict().items()}
-        
+        model_state_dict = detach_tensors_in_dict(model_state_dict)
+        optimizer_state_dict = detach_tensors_in_dict(optimizer.state_dict())
+        lr_scheduler_state_dict = detach_tensors_in_dict(lr_Scheduler.state_dict())
+
         torch.save(
             {
                 "epoch": epoch,
@@ -268,6 +281,7 @@ def save_model(
         )
 
     return save_name
+
 
 
 
