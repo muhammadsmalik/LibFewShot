@@ -368,6 +368,7 @@ class Trainer(object):
             log_path = os.path.join(result_path, "log_files")
             viz_path = os.path.join(log_path, "tfboard_files")
         else:
+            print("Entering init_files", flush=True)
             # you should ensure that data_root name contains its true name
             base_dir = "{}-{}-{}-{}-{}".format(
                 config["classifier"]["name"],
@@ -389,6 +390,7 @@ class Trainer(object):
                     os.path.join(result_path, "config.yaml"), "w", encoding="utf-8"
                 ) as fout:
                     fout.write(yaml.dump(config))
+            print("Exiting init_files", flush=True)
 
         # init_logger_config(
         #     config["log_level"],
