@@ -14,13 +14,13 @@ if __name__ == "__main__":
 
     
 
-    nameCollection=["Baseline_1_Conv32F_1","Baseline++_1_Conv64F_1","Baseline++_1_resnet12_1"]
+    nameCollection=["maml_1_ResNet12"]
 
-    modelCollection=["Baseline","Baseline++","Baseline++"]
+    modelCollection=["maml"]
 
-    numShotsCollection=["1","1","1"]
+    numShotsCollection=["1"]
 
-    backboneCollection=["Conv32F","Conv64F","resnet12"]
+    backboneCollection=["ResNet12"]
 
     # reset final results
     f = open("final_result.csv", "w")
@@ -45,7 +45,7 @@ if __name__ == "__main__":
 
         config = Config("config/"+fileName).get_config_dict()
         rank = 0  # Set the rank to 0 for single GPU or CPU
-        trainer = Trainer(rank, config, name, f, printName)  # Pass both rank and config arguments
+        trainer = Trainer(rank, config, name, f,printName)  # Pass both rank and config arguments
         trainer.train_loop(rank)
 
         
