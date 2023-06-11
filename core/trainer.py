@@ -645,7 +645,9 @@ class Trainer(object):
         # )
         # torch.cuda.set_device(self.rank)
         device = xm.xla_device()
+        print("Using device: {}".format(device))
         list_ids = [self.rank]
+        print("Exiting _init_device")
 
         return device, list_ids
 
