@@ -55,9 +55,9 @@ class MAML(MetaModel):
 
     def set_forward(self, batch):
         image, global_target = batch  # unused global_target
-        # image = image.to(self.device)
-        device = xm.xla_device()
-        image = image.to(device)
+        image = image.to(self.device)
+        # device = xm.xla_device()
+        # image = image.to(device)
 
         (
             support_image,
