@@ -59,7 +59,8 @@ class Trainer(object):
             self.viz_path,
         ) = self._init_files(config, result_dir)
         # self.logger = self._init_logger()
-        self.device, self.list_ids = self._init_device(rank, config)
+        print("initializing device", flush=True)
+        self.device, self.list_ids = self._init_device(rank, config) ########
         print("trainer init device done", flush=True)
         print(self.device, flush=True)
         self.writer = self._init_writer(self.viz_path)
@@ -630,6 +631,7 @@ class Trainer(object):
             tuple: A tuple of deviceand list_ids.
         """
         init_seed(config["seed"], config["deterministic"])
+        print("init seed:{}".format(config["seed"]))
         # device, list_ids = prepare_device(
         #     rank,
         #     config["device_ids"],

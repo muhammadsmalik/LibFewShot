@@ -207,12 +207,15 @@ def detach_tensors_in_dict(input_dict):
     detached_dict = {}
     for k, v in input_dict.items():
         if isinstance(v, torch.Tensor):
+            print(f"Detaching tensor: {k}")  # print statement
             detached_dict[k] = v.cpu().detach()
         elif isinstance(v, dict):
+            print(f"Recursing into dictionary: {k}")  # print statement
             detached_dict[k] = detach_tensors_in_dict(v)
         else:
             detached_dict[k] = v
     return detached_dict
+
 
 
 def save_model(
@@ -272,6 +275,17 @@ def save_model(
         model_state_dict = detach_tensors_in_dict(model_state_dict)
         optimizer_state_dict = detach_tensors_in_dict(optimizer.state_dict())
         lr_scheduler_state_dict = detach_tensors_in_dict(lr_Scheduler.state_dict())
+
+        data_to_save = {
+            "epoch": epoch,
+            "model": model_state_dict,
+            "optimizer": optimizer_state_dict,
+            "lr_scheduler": lr_scheduler_state_dict,
+            "best_val_acc": best_val_acc,
+            "best_test_acc": best_test_acc,
+        }
+        print(data_to_save)  # print statement
+        torch.save(data_to_save, save_name)
 
         torch.save(
             {
