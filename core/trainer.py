@@ -60,9 +60,12 @@ class Trainer(object):
         ) = self._init_files(config, result_dir)
         # self.logger = self._init_logger()
         self.device, self.list_ids = self._init_device(rank, config)
+        print("trainer init device done", flush=True)
+        print(self.device, flush=True)
         self.writer = self._init_writer(self.viz_path)
         self.train_meter, self.val_meter, self.test_meter = self._init_meter()
         # print(self.config)
+        print("initializing model", flush=True)
         self.model, self.model_type = self._init_model(config)
         (
             self.train_loader,
