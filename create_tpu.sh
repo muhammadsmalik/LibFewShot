@@ -4,7 +4,7 @@ max_attempts=50
 sleep_time=10 # sleep for 60 seconds between attempts
 
 # Loop through instance names ocd3-2, ocd3-3, ocd3-4, ocd3-5
-for instance in od3-2 od3-5; do
+for instance in od3-5; do
   attempt=0
 
   while true; do
