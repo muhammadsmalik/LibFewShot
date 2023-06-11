@@ -6,6 +6,9 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
+import torch_xla
+import torch_xla.core.xla_model as xm
+
 
 # FIXME bias=False
 class Linear_fw(nn.Linear):  # used in MAML to forward input with fast weight
@@ -82,8 +85,13 @@ class BatchNorm2d_fw(nn.BatchNorm2d):  # used in MAML to forward input with fast
         self.bias.fast = None
 
     def forward(self, x):
-        running_mean = torch.zeros(x.data.size()[1]).cuda()
-        running_var = torch.ones(x.data.size()[1]).cuda()
+        # running_mean = torch.zeros(x.data.size()[1]).cuda()
+        device = xm.xla_device()
+        running_mean = torch.zeros(x.data.size()[1], device=device)
+
+        # running_var = torch.ones(x.data.size()[1]).cuda()
+        running_var = torch.ones(x.data.size()[1], device=device)
+
         if self.weight.fast is not None and self.bias.fast is not None:
             out = F.batch_norm(
                 x,
