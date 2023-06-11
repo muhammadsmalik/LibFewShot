@@ -125,7 +125,7 @@ class Trainer(object):
                         test_acc, self.best_test_acc
                     )
                 )
-                )
+                
                 print(self.printName, flush=True)
             time_scheduler = self._cal_time_scheduler(experiment_begin, epoch_idx)
             print(" * Time: {}".format(time_scheduler))
