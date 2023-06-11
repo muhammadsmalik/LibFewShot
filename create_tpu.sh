@@ -1,6 +1,6 @@
 #!/bin/bash
 
-max_attempts=5
+max_attempts=50
 sleep_time=10 # sleep for 60 seconds between attempts
 
 # Loop through instance names ocd3-2, ocd3-3, ocd3-4, ocd3-5
