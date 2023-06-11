@@ -86,11 +86,14 @@ class BatchNorm2d_fw(nn.BatchNorm2d):  # used in MAML to forward input with fast
 
     def forward(self, x):
         # running_mean = torch.zeros(x.data.size()[1]).cuda()
-        device = xm.xla_device()
-        running_mean = torch.zeros(x.data.size()[1], device=device)
+        # device = xm.xla_device()
+        # running_mean = torch.zeros(x.data.size()[1], device=device)
+
+        running_mean = torch.zeros(x.data.size()[1])
 
         # running_var = torch.ones(x.data.size()[1]).cuda()
-        running_var = torch.ones(x.data.size()[1], device=device)
+        # running_var = torch.ones(x.data.size()[1], device=device)
+        running_var = torch.ones(x.data.size()[1])
 
         if self.weight.fast is not None and self.bias.fast is not None:
             out = F.batch_norm(
