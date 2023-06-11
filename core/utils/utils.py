@@ -240,6 +240,11 @@ def save_model(
     :return:
     """
 
+    # At the start of the save_model function or before calling torch.save
+    # set the model to evaluation mode if it has such a method (i.e., if it's an nn.Module)
+    if hasattr(model, 'eval'):
+        model.eval()
+
     if save_type == SaveType.NORMAL:
         save_name = os.path.join(save_path, "{}_{:0>5d}.pth".format(name, epoch))
     elif save_type == SaveType.BEST:
@@ -279,6 +284,10 @@ def save_model(
             },
             save_name,
         )
+        
+        # If you want to set it back to train mode afterwards, you can do that too
+        if hasattr(model, 'train'):
+            model.train()
 
     return save_name
 
