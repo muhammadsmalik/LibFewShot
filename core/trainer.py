@@ -113,13 +113,18 @@ class Trainer(object):
                     " * Acc@1 {:.3f} Best acc {:.3f}".format(val_acc, self.best_val_acc), flush=True
                 )
                 print(self.printName, flush=True)
-                print("============ Testing on the test set ============", flush=True)
-                print(self.printName, flush=True)
+                print("============ Testing on the test set ============")
                 test_acc = self._validate(epoch_idx, is_test=True)
+
+                # Update the best_test_acc if test_acc is higher
+                if test_acc > self.best_test_acc:
+                    self.best_test_acc = test_acc
+
                 print(
                     " * Acc@1 {:.3f} Best acc {:.3f}".format(
                         test_acc, self.best_test_acc
-                    ), flush=True
+                    )
+                )
                 )
                 print(self.printName, flush=True)
             time_scheduler = self._cal_time_scheduler(experiment_begin, epoch_idx)
@@ -130,7 +135,7 @@ class Trainer(object):
                 if ((epoch_idx + 1) % self.val_per_epoch) == 0:
                     if val_acc > self.best_val_acc:
                         self.best_val_acc = val_acc
-                        self.best_test_acc = test_acc
+                        # self.best_test_acc = test_acc
                         self._save_model(epoch_idx, SaveType.BEST)
 
                     if epoch_idx != 0 and epoch_idx % self.config["save_interval"] == 0:
