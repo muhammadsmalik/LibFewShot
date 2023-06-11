@@ -213,8 +213,11 @@ def detach_tensors_in_dict(input_dict):
             print(f"Recursing into dictionary: {k}")  # print statement
             detached_dict[k] = detach_tensors_in_dict(v)
         else:
-            detached_dict[k] = v
+            # Exclude the after_scheduler object from the serialization
+            if k != 'after_scheduler':
+                detached_dict[k] = v
     return detached_dict
+
 
 
 
