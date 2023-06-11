@@ -40,13 +40,23 @@ if __name__ == "__main__":
         # name = "test_run"
 
         fileName = name + ".yaml"
+
+        print("Writing to file: " + fileName)
         
         f.write(modelCollection[total_count_index] + "," + str(numShotsCollection[total_count_index]) + "," + backboneCollection[total_count_index] )
 
+        print("Done writing header")
+
         config = Config("config/"+fileName).get_config_dict()
+
+        print("Done getting config")
         rank = 0  # Set the rank to 0 for single GPU or CPU
+        print("entering trainer")
         trainer = Trainer(rank, config, name, f,printName)  # Pass both rank and config arguments
+        print("exiting trainer")
+        print("entering train loop")
         trainer.train_loop(rank)
+        print("exiting train loop")
 
         
         # swap out the test for a different test folder
