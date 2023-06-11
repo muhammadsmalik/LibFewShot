@@ -25,6 +25,9 @@ from core.utils import accuracy
 from .meta_model import MetaModel
 from ..backbone.utils import convert_maml_module
 
+import torch_xla
+import torch_xla.core.xla_model as xm
+
 
 class MAMLLayer(nn.Module):
     def __init__(self, feat_dim=64, way_num=5) -> None:
@@ -52,7 +55,10 @@ class MAML(MetaModel):
 
     def set_forward(self, batch):
         image, global_target = batch  # unused global_target
-        image = image.to(self.device)
+        # image = image.to(self.device)
+        device = xm.xla_device()
+        image = image.to(device)
+
         (
             support_image,
             query_image,
