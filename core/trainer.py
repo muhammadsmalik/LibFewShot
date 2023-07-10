@@ -45,22 +45,22 @@ class Trainer(object):
     """
 
     def __init__(self, rank, config, result_dir, f, name):
-        # print("trainer init", flush=True)
-        # self.file = f
-        # self.rank = rank
-        # self.config = config
-        # self.printName = name
-        # self.config["rank"] = rank
-        # self.distribute = self.config["n_gpu"] > 1
-        # print(f"self.distribute: {self.distribute}", flush=True)
-        # print(f"self.config['n_gpu']: {self.config['n_gpu']}", flush=True)
-        # print(f"trainer rank: {self.rank}", flush=True)
-        # (
-        #     self.result_path,
-        #     self.log_path,
-        #     self.checkpoints_path,
-        #     self.viz_path,
-        # ) = self._init_files(config, result_dir)
+        print("trainer init", flush=True)
+        self.file = f
+        self.rank = rank
+        self.config = config
+        self.printName = name
+        self.config["rank"] = rank
+        self.distribute = self.config["n_gpu"] > 1
+        print(f"self.distribute: {self.distribute}", flush=True)
+        print(f"self.config['n_gpu']: {self.config['n_gpu']}", flush=True)
+        print(f"trainer rank: {self.rank}", flush=True)
+        (
+            self.result_path,
+            self.log_path,
+            self.checkpoints_path,
+            self.viz_path,
+        ) = self._init_files(config, result_dir)
 
         # # self.logger = self._init_logger()
         print("initializing device", flush=True)
@@ -634,7 +634,7 @@ class Trainer(object):
         Returns:
             tuple: A tuple of deviceand list_ids.
         """
-        init_seed(config["seed"], config["deterministic"])
+        # init_seed(config["seed"], config["deterministic"])
         print("init seed:{}".format(config["seed"]))
         # device, list_ids = prepare_device(
         #     rank,
