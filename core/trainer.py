@@ -45,6 +45,7 @@ class Trainer(object):
     """
 
     def __init__(self, rank, config, result_dir, f, name):
+        print(config)
         # print("trainer init", flush=True)
         # self.file = f
         # self.rank = rank
@@ -634,7 +635,6 @@ class Trainer(object):
         Returns:
             tuple: A tuple of deviceand list_ids.
         """
-        print(config)
         # init_seed(config["seed"], config["deterministic"])
         print("init seed:{}".format(config["seed"]))
         # device, list_ids = prepare_device(
