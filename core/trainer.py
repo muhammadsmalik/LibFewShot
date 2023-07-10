@@ -644,6 +644,7 @@ class Trainer(object):
         #     else self.config["dist_url"],
         # )
         # torch.cuda.set_device(self.rank)
+        print("Setting device to TPU")
         device = xm.xla_device(n=0)
         print("Using device: {}".format(device))
         list_ids = [self.rank]
