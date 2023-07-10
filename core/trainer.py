@@ -60,6 +60,10 @@ class Trainer(object):
             # self.log_path,
             # self.checkpoints_path,
             # self.viz_path,
+            a,
+            b,
+            c,
+            d,
         ) = self._init_files(config, result_dir)
 
         # # self.logger = self._init_logger()
