@@ -56,10 +56,10 @@ class Trainer(object):
         print(f"self.config['n_gpu']: {self.config['n_gpu']}", flush=True)
         print(f"trainer rank: {self.rank}", flush=True)
         (
-            self.result_path,
-            self.log_path,
-            self.checkpoints_path,
-            self.viz_path,
+            # self.result_path,
+            # self.log_path,
+            # self.checkpoints_path,
+            # self.viz_path,
         ) = self._init_files(config, result_dir)
 
         # # self.logger = self._init_logger()
