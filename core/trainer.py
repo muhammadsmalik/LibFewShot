@@ -46,5 +46,5 @@ class Trainer(object):
 
     def __init__(self, rank, config, result_dir, f, name):
         print("Before initializing device")
-    device = xm.xla_device()
-    print("After initializing device", device)
+        device = xm.xla_device()
+        print("After initializing device", device)
