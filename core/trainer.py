@@ -52,6 +52,9 @@ class Trainer(object):
         self.printName = name
         self.config["rank"] = rank
         self.distribute = self.config["n_gpu"] > 1
+        print(f"self.distribute: {self.distribute}", flush=True)
+        print(f"self.config['n_gpu']: {self.config['n_gpu']}", flush=True)
+        print(f"trainer rank: {self.rank}", flush=True)
         (
             self.result_path,
             self.log_path,
