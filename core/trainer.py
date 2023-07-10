@@ -61,7 +61,7 @@ class Trainer(object):
             self.checkpoints_path,
             self.viz_path,
         ) = self._init_files(config, result_dir)
-        self.logger = self._init_logger()
+        # self.logger = self._init_logger()
         print("initializing device", flush=True)
         self.device, self.list_ids = self._init_device(rank, config) ########
         print("trainer init device done", flush=True)
