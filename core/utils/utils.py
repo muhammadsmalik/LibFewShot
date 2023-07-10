@@ -332,8 +332,6 @@ def init_seed(seed=0, deterministic=False):
         torch.backends.cudnn.benchmark = True
         torch.backends.cudnn.deterministic = False
 
-    print("set seed: {}".format(seed))
-
 
 # https://github.com/NVIDIA/apex/blob/master/examples/imagenet/main_amp.py
 class data_prefetcher:

@@ -367,47 +367,50 @@ class Trainer(object):
         Returns:
             tuple: A tuple of (result_path, log_path, checkpoints_path, viz_path).
         """
-        print("Nothing to init")
-        return None, None, None, None
-        # if self.config["resume"]:
-        #     result_path = self.config["resume_path"]
-        #     checkpoints_path = os.path.join(result_path, "checkpoints")
-        #     log_path = os.path.join(result_path, "log_files")
-        #     viz_path = os.path.join(log_path, "tfboard_files")
-        # else:
-        #     print("Entering init_files", flush=True)
-        #     # you should ensure that data_root name contains its true name
-        #     base_dir = "{}-{}-{}-{}-{}".format(
-        #         config["classifier"]["name"],
-        #         config["data_root"].split("/")[-1],
-        #         config["backbone"]["name"],
-        #         config["way_num"],
-        #         config["shot_num"],
-        #     )
-        #     result_path = os.path.join(config["result_root"], result_dir)
-        #     print("Result DIR: " + result_path, flush=True)
-        #     print(self.printName, flush=True)
-        #     checkpoints_path = os.path.join(result_path, "checkpoints")
-        #     log_path = os.path.join(result_path, "log_files")
-        #     viz_path = os.path.join(log_path, "tfboard_files")
-        #     if self.rank == 0:
-        #         create_dirs([result_path, log_path, checkpoints_path, viz_path])
+        if self.config["resume"]:
+            result_path = self.config["resume_path"]
+            checkpoints_path = os.path.join(result_path, "checkpoints")
+            log_path = os.path.join(result_path, "log_files")
+            viz_path = os.path.join(log_path, "tfboard_files")
+        else:
+            print("Entering init_files", flush=True)
+            # you should ensure that data_root name contains its true name
+            base_dir = "{}-{}-{}-{}-{}".format(
+                config["classifier"]["name"],
+                config["data_root"].split("/")[-1],
+                config["backbone"]["name"],
+                config["way_num"],
+                config["shot_num"],
+            )
+            result_path = os.path.join(config["result_root"], result_dir)
+            print("Result DIR: " + result_path, flush=True)
+            print(self.printName, flush=True)
+            checkpoints_path = os.path.join(result_path, "checkpoints")
+            log_path = os.path.join(result_path, "log_files")
+            viz_path = os.path.join(log_path, "tfboard_files")
+            if self.rank == 0:
+                create_dirs([result_path, log_path, checkpoints_path, viz_path])
 
-        #         with open(
-        #             os.path.join(result_path, "config.yaml"), "w", encoding="utf-8"
-        #         ) as fout:
-        #             fout.write(yaml.dump(config))
-        #     print("Exiting init_files", flush=True)
+                with open(
+                    os.path.join(result_path, "config.yaml"), "w", encoding="utf-8"
+                ) as fout:
+                    fout.write(yaml.dump(config))
+            print("Exiting init_files", flush=True)
 
-        # # init_logger_config(
-        # #     config["log_level"],
-        # #     log_path,
-        # #     config["classifier"]["name"],
-        # #     config["backbone"]["name"],
-        # #     rank=self.rank,
-        # # )
+        # init_logger_config(
+        #     config["log_level"],
+        #     log_path,
+        #     config["classifier"]["name"],
+        #     config["backbone"]["name"],
+        #     rank=self.rank,
+        # )
 
-        # return result_path, log_path, checkpoints_path, viz_path
+        print("result_path: " + result_path, flush=True)
+        print("log_path: " + log_path, flush=True)
+        print("checkpoints_path: " + checkpoints_path, flush=True)
+        print("viz_path: " + viz_path, flush=True)
+
+        return result_path, log_path, checkpoints_path, viz_path
 
     def _init_logger(self):
         self.logger = getLogger(__name__)
@@ -636,7 +639,7 @@ class Trainer(object):
         Returns:
             tuple: A tuple of deviceand list_ids.
         """
-        # init_seed(config["seed"], config["deterministic"])
+        init_seed(config["seed"], config["deterministic"])
         print("init seed:{}".format(config["seed"]))
         # device, list_ids = prepare_device(
         #     rank,
