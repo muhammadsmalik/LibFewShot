@@ -45,7 +45,6 @@ class Trainer(object):
     """
 
     def __init__(self, rank, config, result_dir, f, name):
-        print(config)
         # print("trainer init", flush=True)
         # self.file = f
         # self.rank = rank

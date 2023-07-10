@@ -49,6 +49,8 @@ if __name__ == "__main__":
 
         config = Config("config/"+fileName).get_config_dict()
 
+        print(config)
+
         print("Done getting config")
         rank = 0  # Set the rank to 0 for single GPU or CPU
         print("entering trainer")
