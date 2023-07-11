@@ -46,6 +46,10 @@ class Trainer(object):
 
     def __init__(self, rank, config, result_dir, f, name):
         # print("trainer init", flush=True)
+        print("initializing device", flush=True)
+        self.device, self.list_ids = self._init_device(rank, config) ########
+        print("trainer init device done", flush=True)
+        
         self.file = f
         self.rank = rank
         self.config = config
@@ -55,17 +59,15 @@ class Trainer(object):
         print(f"self.distribute: {self.distribute}", flush=True)
         print(f"self.config['n_gpu']: {self.config['n_gpu']}", flush=True)
         print(f"trainer rank: {self.rank}", flush=True)
-        # (
-        #     self.result_path,
-        #     self.log_path,
-        #     self.checkpoints_path,
-        #     self.viz_path,
-        # ) = self._init_files(config, result_dir)
+        (
+            self.result_path,
+            self.log_path,
+            self.checkpoints_path,
+            self.viz_path,
+        ) = self._init_files(config, result_dir)
 
         # # self.logger = self._init_logger()
-        print("initializing device", flush=True)
-        self.device, self.list_ids = self._init_device(rank, config) ########
-        print("trainer init device done", flush=True)
+
         print(self.device, flush=True)
         self.writer = self._init_writer(self.viz_path)
         self.train_meter, self.val_meter, self.test_meter = self._init_meter()
